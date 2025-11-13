@@ -1,0 +1,11 @@
+{
+  "title":"Hello World",
+  "home":"Home",
+
+  "navbar": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "contact": "Contact"
+  }
+}
