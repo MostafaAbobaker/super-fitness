@@ -7,5 +7,59 @@
     "about": "About Us",
     "services": "Services",
     "contact": "Contact"
+  },
+  "about": {
+    "title":"EMPOWERING YOU TO ACHIEVE",
+    "speTerm":"YOUR FITNESS",
+    "term":"GOALS",
+    "subTitle":"We believe fitness is more than just a workout—it's a lifestyle. With top-of- the-line facilities, certified trainers, and a supportive community, we're here to inspire and guide you every step of the way."
+  },
+  "services": {
+    "titleA": "Personal Trainer",
+    "descriptionA": "Achieve your fitness goals with the guidance of our certified trainers.",
+
+    "titleB": "Cardio Programs",
+    "descriptionB": "From steady-state runs to interval sprints, our treadmill programs.",
+
+    "titleC": "Quality Equipment",
+    "descriptionC": "Our gym is equipped with the latest cardio & strength machines.",
+
+    "titleD": "Healthy Nutritions",
+    "descriptionD": "Fuel your fitness journey with customized meal plans for you.",
+    "btn": ""
+
+  },
+  "bestWay": {
+    "title": "Elevate fitness with the",
+    "highlight": "best way",
+    "titleEnd": "possible",
+    "description": "We offer a fitness journey that's tailored to your goals, supported by professional trainers and a welcoming community. Whether it's weight loss, strength building, or overall wellness, our proven methods.",
+
+    "step1Title": "Personalized Fitness Plans",
+    "step1Description": "We tailor every workout to fit your unique goals and fitness level ensuring that you make the most progress.",
+
+    "step2Title": "Results-Driven Focus",
+    "step2Description": "Everything we do is designed to help you achieve measurable results, whether you're aiming for weight loss.",
+
+    "step3Title": "State-Of-The-Art Equipment",
+    "step3Description": "We provide the latest in gym equipment, from cardio machines to free weights, designed to support every type."
+  },
+
+  "hero": {
+    "title1": "Your body can",
+    "highlight": "stand",
+    "title2": "almost",
+    "title3": "anything",
+    "description": "It's your mind that needs convincing. Push past your limits, stay committed, and watch as your body transform into powerhouse of strength and resilience. Start your journey today & truly capable of!",
+
+    "stat1Number": "1200+",
+    "stat1Text": "Active Members",
+
+    "stat2Number": "12+",
+    "stat2Text": "Certified Trainers",
+
+    "stat3Number": "20+",
+    "stat3Text": "Year Of Experience"
   }
+
 }

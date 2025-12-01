@@ -1,11 +1,19 @@
 import { Component } from '@angular/core';
+import {NewsBarComponent} from '../../../shared/components/news-bar/news-bar.component';
+import {ButtonComponent} from '../../../shared/components/button/button.component';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  imports: [
+    NewsBarComponent,
+    ButtonComponent,
+    TranslatePipe
+  ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-
+  title: string = 'Get Started';
+  backGround: string = 'color';
 }

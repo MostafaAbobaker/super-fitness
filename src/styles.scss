@@ -1,8 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @use "tailwindcss";
-
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400..800&display=swap');
 
 
@@ -16,10 +14,10 @@ body {
     background-color: #fff;
 }
 [data-theme="dark"] {
-  body {
-  background-color: var(--secondary-color);
-  color: #fff;
-}
+    body {
+    background-color: var(--secondary-color);
+    color: #fff;
+  }
 }
 
 

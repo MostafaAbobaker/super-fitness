@@ -1,41 +1,67 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, HostListener, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule,TranslatePipe],
+  standalone: true,
+  imports: [CommonModule, TranslatePipe, RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
-  iconTheme:string='light';
-  lang:string='en';
+export class NavbarComponent implements AfterViewInit {
+  iconTheme: string = 'light';
+  lang: string = 'en';
+  isOpen: boolean = false;
 
+  @ViewChild('navbar') navbarRef!: ElementRef<HTMLElement>;
 
-  constructor(private _languageService:LanguageService, private _themeService:ThemeService ) {
+  constructor(private _languageService: LanguageService, private _themeService: ThemeService) {}
 
+  ngOnInit(): void {
+    this.lang = this._languageService.language();
+    this.iconTheme = this._themeService.theme();
   }
-  ngOnInit() {
-    this.lang=this._languageService.language();
-    this.iconTheme=this._themeService.theme();
 
+  ngAfterViewInit(): void {
+    this.updateNavbarBackground(window.scrollY);
   }
 
-
-
-  toggleDirection( langName:string ) {
+  toggleDirection(langName: string): void {
     this._languageService.toggleLanguage(langName);
-    this.lang=this._languageService.language();
+    this.lang = this._languageService.language();
   }
 
-  toggleTheme() {
-
+  toggleTheme(): void {
     this._themeService.toggleTheme();
-    this.iconTheme=this._themeService.theme();
+    this.iconTheme = this._themeService.theme();
     console.log(this.iconTheme);
+  }
 
+  isMenuOpen(): void {
+    this.isOpen = !this.isOpen;
+    console.log(this.isOpen);
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.updateNavbarBackground(window.scrollY);
+  }
+
+  private updateNavbarBackground(scrollY: number) {
+    if (!this.navbarRef) return;
+
+    const nav = this.navbarRef.nativeElement;
+
+    if (scrollY > window.innerHeight) {
+      nav.classList.remove('bg-transparent', 'dark:bg-transparent');
+      nav.classList.add('bg-[#F3F3F4]', 'dark:bg-[var(--secondary-color)]');
+    } else {
+      nav.classList.remove('bg-[#F3F3F4]', 'dark:bg-[var(--secondary-color)]');
+      nav.classList.add('bg-transparent', 'dark:bg-transparent');
+    }
   }
 }
