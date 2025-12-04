@@ -1,9 +1,8 @@
-<nav #navbar class="fixed w-full z-[99999] px-2"><!-- bg-[#F3F3F4] dark:bg-(--secondary-color) -->
+<nav #navbar class="fixed w-full z-[99999] px-2">
     <div class="container mx-auto">
       <div class="flex justify-between items-center relative">
-
         <div class="navbar-brand">
-          <a><img src="../../../../assets/images/logo.png" alt="" class="w-[90px]" ></a>
+          <a><img ngSrc="../../../../assets/images/logo.png" alt="" class="w-[90px]" height="3000" width="3000"></a>
         </div>
 
         <!-- Normal Links -->
@@ -23,19 +22,21 @@
               <i class="fa-solid fa-sun text-black dark:text-white"></i>
             </button>
           </li>
-          <li class="nav-item language-icon">
-            @if(lang == 'en') {
-              <button class="rtl py-4 cursor-pointer px-2 flex items-center transition" (click)="toggleDirection('ar')">
-                <img src="../../../../assets/images/egypt.svg" alt="" class="w-[20px] h-[20px] me-2 ">
-                <span class="font-bold text-black dark:text-[#fff]">عربى</span>
-              </button>
-            } @else {
-              <button class="ltr py-4 cursor-pointer px-2 flex items-center transition" (click)="toggleDirection('en')">
-                <img src="../../../../assets/images/united-kingdom.svg" alt="" class="w-[20px] h-[20px ] me-2"> <span class="font-bold text-black dark:text-[#fff]">EN</span>
-              </button>
-
-            }
-          </li>
+          <!-- Language selection should be only in User Account Page -->
+          <!--
+            <li class="nav-item language-icon">
+              @if(lang == 'en') {
+                <button class="rtl py-4 cursor-pointer px-2 flex items-center transition" (click)="toggleDirection('ar')">
+                  <img ngSrc="../../../../assets/images/egypt.svg" alt="" class="w-[20px] h-[20px] me-2 " height="16" width="16">
+                  <span class="font-bold text-black dark:text-[#fff]">عربى</span>
+                </button>
+              } @else {
+                <button class="ltr py-4 cursor-pointer px-2 flex items-center transition" (click)="toggleDirection('en')">
+                  <img ngSrc="../../../../assets/images/united-kingdom.svg" alt="" class="w-[20px] h-[20px ] me-2" height="16" width="16"> <span class="font-bold text-black dark:text-[#fff]">EN</span>
+                </button>
+              }
+            </li>
+          -->
           <li class="nav-item" >
             <a href="" class="btn bg-(--primary-color) text-white p-2 px-4 rounded-[20px] cursor-pointer transition">Login</a>
           </li>
@@ -55,23 +56,17 @@
             </button>
 
             @if (isOpen) {
-              <div class="w-[300px] bg-[#F3F3F4] shadow-2xl dark:bg-(--secondary-color) absolute top-20 right-0 z-[9999] p-4 rounded-xl lg:hidden">
-
+              <div class="w-[300px] bg-[#F3F3F4] shadow-2xl dark:bg-(--secondary-color) absolute top-20 right-0 z-[9999] p-4 rounded-xl ">
                 <ul class="flex flex-col gap-3">
                   <li><a class="p-2 font-bold text-black dark:text-white hover:text-(--primary-color)" routerLink="home" routerLinkActive="active-like">{{"navbar.home"| translate}}</a></li>
                   <li><a class="p-2 font-bold text-black dark:text-white hover:text-(--primary-color)" routerLink="about" routerLinkActive="active-like">{{"navbar.about"| translate}}</a></li>
                   <li><a class="p-2 font-bold text-black dark:text-white hover:text-(--primary-color)" routerLink="services" routerLinkActive="active-like">{{"navbar.services"| translate}}</a></li>
                   <li><a class="p-2 font-bold text-black dark:text-white hover:text-(--primary-color)" routerLink="contact" routerLinkActive="active-like">{{"navbar.contact"| translate}}</a></li>
                 </ul>
-
               </div>
             }
           </li>
-
-
         </ul>
-
-        </div>
       </div>
-
-  </nav>
+    </div>
+</nav>

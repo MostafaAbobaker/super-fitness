@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
-import {NgClass} from '@angular/common';
+import {NgClass, NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
   imports: [
-    NgClass
+    NgClass,
+    NgOptimizedImage
   ],
   styleUrls: ['./button.component.scss']
 })
