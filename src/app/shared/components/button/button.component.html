@@ -1,9 +1,7 @@
-
-
-<a href="#" [ngClass]="buttonClasses" class="btn">
+<!-- ButtonComponent Reusable -->
+<a [routerLink]="activeLink" [ngClass]="buttonClasses" class="btn">
   {{ title }}
   <div class="cursor-pointer bg-[var(--primary-color)] rounded-full w-8 h-8 absolute top-1 -right-5 border-2">
-    <img src="../../../../assets/images/About/arrow.png" alt="arrow" />
+    <img ngSrc="../../../../assets/images/About/arrow.png" alt="arrow" height="35" width="35"/>
   </div>
 </a>
-

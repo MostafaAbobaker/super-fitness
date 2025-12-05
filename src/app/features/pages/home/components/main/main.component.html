@@ -1,13 +1,8 @@
-<main class="relative bg-[url('/assets/images/Home/home.jpg')] bg-no-repeat bg-cover bg-left-bottom">
-
-  <div class="absolute inset-0 backdrop-blur-3xl"></div>
-
-  <div class="relative h-screen bg-[#b7bdba]/40 dark:bg-[#1f2524]/40 flex items-end justify-center px-4 z-10">
+<main class="relative overflow-hidden bg-[url('/assets/images/Home/home.jpg')] bg-no-repeat bg-cover bg-left-bottom">
+  <div class="absolute inset-0 backdrop-blur-3xl pointer-events-none"></div>
+  <div class="relative min-h-screen bg-[#b7bdba]/40 dark:bg-[#1f2524]/40 flex items-end justify-center px-4 z-10">
     <div class="container mx-auto">
-
       <div class="grid grid-cols-12 ">
-
-        <!-- النص على الشمال -->
         <div class="lg:col-span-6 col-span-12 text-left rtl:text-right pt-25">
           <h1 class="text-black dark:text-white lg:text-5xl text-4xl font-bold leading-tight tracking-widest uppercase">
             {{"hero.title1" | translate}} <span class="text-[var(--primary-color)]"> {{"hero.highlight" | translate}} {{"hero.title2" | translate}} </span> {{"hero.title3" | translate}}
@@ -36,29 +31,20 @@
               <span class="text-xl font-bold">{{"hero.stat3Number" | translate}}</span>
               <span>{{"hero.stat3Text" | translate}}</span>
             </div>
-
           </div>
 
           <div class="flex gap-15">
-            <app-button [title]="titleStr" [backgroundColor]="backGroundStr"></app-button>
-            <app-button [title]="titleEx" [backgroundColor]="backGroundEx"></app-button>
+            <app-button [title]="titleStr" [backgroundColor]="backGroundStr" [activeLink]="linkStr"></app-button>
+            <app-button [title]="titleEx" [backgroundColor]="backGroundEx" [activeLink]="linkEx"></app-button>
           </div>
-
-
         </div>
 
-        <!-- الصورة على اليمين -->
         <div class="lg:col-span-6 col-span-12 flex justify-end">
-          <img src="../../../../../../assets/images/man.png" alt="man" class="lg:w-[550px] md:w-[350px] w-[250px] h-auto">
+          <img ngSrc="../../../../../../assets/images/man.png" width="456" height="700" class="lg:w-[550px] md:w-[350px] w-[250px] h-auto" alt="man"/>
         </div>
-
       </div>
-
-
-
     </div>
   </div>
-
 </main>
 
 <app-news-bar></app-news-bar>
