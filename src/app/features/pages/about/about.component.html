@@ -1,1 +1,64 @@
-<p>about works!</p>
+<section class="bg-[#F3F3F4] dark:bg-(--secondary-color) px-4">
+  <div class="container mx-auto">
+    <div class="grid grid-cols-12 gap-0 py-40">
+      <div class="col-span-12 xl:col-span-6 relative w-full">
+          <img ngSrc="../../../../assets/images/About/Image1.png" alt="" class="w-[200px] sm:w-[300px]" height="542" width="358">
+          <img ngSrc="../../../../assets/images/About/Image2.jpeg" class="rounded-xl absolute w-[150px] sm:w-[250px] -bottom-20 sm:-bottom-35 xl:-bottom-0 2xl:-bottom-15 left-35 sm:left-55 rtl:sm:left-65" alt="" height="1280" width="853">
+          <img ngSrc="../../../../assets/images/About/Image3.webp" class="rounded-xl absolute w-[150px] sm:w-[200px] top-12 sm:top-18 left-52 sm:left-77 rtl:sm:left-65 rtl:sm:top-11" alt="" height="340" width="510">
+      </div>
+      <div class="col-span-12 xl:col-span-6 mt-50 xl:mt-0 w-full">
+
+        <h1 class="text-black sm:text-5xl text-4xl font-bold dark:text-white">{{"about.title"| translate}}<span class="text-[var(--primary-color)]">{{"about.speTerm"| translate}} </span> {{"about.term"| translate}}</h1>
+        <p class="my-10 text-black dark:text-white mb-15">{{"about.subTitle"| translate}}</p>
+
+        <div class="flex gap-20 my-4">
+          <div>
+            <div class="flex">
+              <img ngSrc="../../../../assets/images/About/Div.png" alt="" height="35" width="35">
+              <h3 class="text-xl font-bold text-black dark:text-white">{{"services.titleA"| translate}}</h3>
+            </div>
+            <div class="my-4">
+              <p class="text-black dark:text-white pl-2">{{"services.descriptionA"| translate}}</p>
+            </div>
+          </div>
+          <div>
+            <div class="flex">
+              <img ngSrc="../../../../assets/images/About/Div.png" alt="" height="35" width="35">
+              <h3 class="text-xl font-bold text-black dark:text-white">{{"services.titleB"| translate}}</h3>
+            </div>
+            <div class="my-4">
+              <p class="text-black dark:text-white pl-2">{{"services.descriptionB"| translate}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="w-full border-b border-gray-300 dark:border-gray-600"></div>
+        <div class="flex gap-20 my-4">
+          <div>
+            <div class="flex">
+              <img ngSrc="../../../../assets/images/About/Div.png" alt="" height="35" width="35">
+              <h3 class="text-xl font-bold text-black dark:text-white">{{"services.titleC"| translate}}</h3>
+            </div>
+            <div class="my-4">
+              <p class="text-black dark:text-white pl-2">{{"services.descriptionC"| translate}}</p>
+            </div>
+          </div>
+          <div>
+            <div class="flex">
+              <img ngSrc="../../../../assets/images/About/Div.png" alt="" height="35" width="35">
+              <h3 class="text-xl font-bold text-black dark:text-white">{{"services.titleD"| translate}}</h3>
+            </div>
+            <div class="my-4">
+              <p class="text-black dark:text-white pl-2">{{"services.descriptionD"| translate}}</p>
+            </div>
+          </div>
+        </div>
+
+        <app-button [title]="title" [backgroundColor]="backGround"></app-button>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+<app-news-bar></app-news-bar>
+

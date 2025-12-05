@@ -1,0 +1,31 @@
+.ticker-wrapper {
+  width: 100%;
+  overflow: hidden;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.ticker {
+  display: flex;
+  gap: 50px;           /* مسافة بين الكلمات */
+  white-space: nowrap;
+  animation: tickerMove 15s linear infinite;
+}
+
+.ticker-item {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+}
+
+@keyframes tickerMove {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

@@ -7,5 +7,22 @@ import { Component } from '@angular/core';
   styleUrl: './news-bar.component.scss'
 })
 export class NewsBarComponent {
-
+  newsItems: Array<any> = [
+    "outdoor & online trainers",
+    "personal training",
+    "live classes",
+    "personal trainers",
+    "outdoor & online trainers",
+    "personal training",
+    "live classes",
+    "personal trainers",
+    "outdoor & online trainers",
+    "live classes",
+    "personal trainers",
+    "outdoor & online trainers",
+    "personal training",
+    "outdoor & online trainers",
+    "personal training",
+    "live classes",
+  ];
 }
