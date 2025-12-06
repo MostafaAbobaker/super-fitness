@@ -20,6 +20,7 @@ export class AskMeComponent implements OnInit, AfterViewChecked {
   userInput: string = '';  // User input text
   messages: Message[] = [];  // Array to store all messages
   isLoading: boolean = false;  // Loading state to prevent multiple requests
+  userName: string = '';
 
   isOpen: any = false;  // Chat window open/close state
   title: string = 'Hey Ask Me';  // Button or window title
@@ -36,7 +37,7 @@ export class AskMeComponent implements OnInit, AfterViewChecked {
 
     // Add welcome message from the bot
     this.messages.push({
-      text: 'Hello Mohamed How can I assist you today...?',
+      text: `Hello ${this.userName} How can I assist you today...?`,
       isUser: false,
       timestamp: new Date()
     });
