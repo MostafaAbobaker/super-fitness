@@ -1,52 +1,40 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../../../../environments/environment';
-import {
-  GoogleGenerativeAI,
-  GenerativeModel,
-  ChatSession,
-  GenerateContentResult,
-  EnhancedGenerateContentResponse
-} from '@google/generative-ai';
+import { HttpClient } from '@angular/common/http';
+import {catchError, map, Observable, throwError} from 'rxjs';
+import { GeminiResponse } from '../../Model/GeminiResponse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeminiService {
 
-  private model: GenerativeModel;  // The AI model instance
-  private genAI: GoogleGenerativeAI;  // Main API client
+  text: string = '';
 
-  constructor() {
-    // Initialize the API client with the API key from environment
-    this.genAI = new GoogleGenerativeAI('AIzaSyAolwvJ2W6VHIV-M27IRnxHXOSsosP39Eg');
+  private httpClient = inject(HttpClient);
 
-    // Get the specific generative model (Gemini 2.5 Flash)
-    this.model = this.genAI.getGenerativeModel({model: "gemini-2.5-flash"});
-  }
+  /**
+   * Sends the user's message to your .NET backend API.
+   * The backend will connect to Gemini and return the AI response.
+   *
+   * @param message - User message to send to Gemini
+   * @returns AI text response
+   */
+  SendChatToGeminiApi(message: string): Observable <string> {
+    return this.httpClient.post<GeminiResponse>(`${environment.geminiApikey}/api/gemini/ask`, { message }).pipe(
+      map((response: GeminiResponse): string => {
+        this.text = response?.candidates?.[0]?.content?.parts?.[0]?.text;
 
-  // Start a new chat session with empty history
-  async StartChat(): Promise<ChatSession> {
-    return this.model.startChat({
-      history: [],  // No previous messages at start
-      generationConfig: {
-        maxOutputTokens: 1000,  // Limit max tokens in response
-      },
-    });
-  }
+        if (!this.text) {
+          throw new Error('No response text received from backend');
+        }
 
-  // Send a user message and get the AI response text
-  async SendChatMessage(chat: ChatSession, message: string): Promise<string> {
-    try {
-      // Send message to chat session and get the result
-      const result: GenerateContentResult = await chat.sendMessage(message);
-      const response: EnhancedGenerateContentResponse = result.response;
-
-      // Extract and return text from the AI response
-      return response.text();
-    } catch (error) {
-      console.error('Error in SendChatMessage Service', error);
-      // Rethrow error to be handled by caller
-      throw error;
-    }
+        return this.text;
+      }),
+      catchError(err => {
+        console.error('Error sending message to Backend Gemini API:', err);
+        return throwError(() => err);
+      })
+    );
   }
 }

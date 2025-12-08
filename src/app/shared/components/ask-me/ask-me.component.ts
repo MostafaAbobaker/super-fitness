@@ -3,24 +3,26 @@ import {NgClass, NgOptimizedImage} from '@angular/common';
 import {GeminiService} from './Service/AskMe/gemini.service';
 import {Message} from './Model/Message';
 import {FormsModule} from '@angular/forms';
+import {MessageCardComponent} from '../message-card/message-card.component';
 
 @Component({
   selector: 'app-ask-me',
   imports: [
     NgClass,
     FormsModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MessageCardComponent
   ],
   templateUrl: './ask-me.component.html',
   styleUrl: './ask-me.component.scss'  // NOTE: should be 'styleUrls'
 })
 export class AskMeComponent implements OnInit, AfterViewChecked {
 
-  private chat: any;  // Chat session object
+  // private chat: any;  // Chat session object
   userInput: string = '';  // User input text
   messages: Message[] = [];  // Array to store all messages
   isLoading: boolean = false;  // Loading state to prevent multiple requests
-  userName: string = '';
+  userName: string = 'Mohamed'; // Alternate It Then Catch From Auth
 
   isOpen: any = false;  // Chat window open/close state
   title: string = 'Hey Ask Me';  // Button or window title
@@ -32,12 +34,10 @@ export class AskMeComponent implements OnInit, AfterViewChecked {
 
   // Runs when the component loads
   async ngOnInit(): Promise<void> {
-    // Start a new chat session
-    this.chat = await this.geminiService.StartChat();
 
-    // Add welcome message from the bot
+    // Welcome message
     this.messages.push({
-      text: `Hello ${this.userName} How can I assist you today...?`,
+      text: `Hello ${this.userName}! How can I assist you today?`,
       isUser: false,
       timestamp: new Date()
     });
@@ -91,13 +91,22 @@ export class AskMeComponent implements OnInit, AfterViewChecked {
 
     try {
       // Send user message to AI and get response
-      const response: string = await this.geminiService.SendChatMessage(this.chat, userMessage);
-
-      // Add AI's reply to messages
-      this.messages.push({
-        text: response,
-        isUser: false,
-        timestamp: new Date()
+      this.geminiService.SendChatToGeminiApi(userMessage).subscribe({
+        next: (responseText: string) => {
+          this.messages.push({
+            text: responseText,
+            isUser: false,
+            timestamp: new Date()
+          });
+        },
+        error: (error) => {
+          console.error('Error:', error);
+          this.messages.push({
+            text: 'Sorry, I encountered an error.',
+            isUser: false,
+            timestamp: new Date()
+          });
+        }
       });
     }
     catch (error) {
