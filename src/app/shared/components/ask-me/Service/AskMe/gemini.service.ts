@@ -1,51 +1,48 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../../../../environments/environment';
-import {
-  GoogleGenerativeAI,
-  GenerativeModel,
-  ChatSession,
-  GenerateContentResult,
-  EnhancedGenerateContentResponse
-} from '@google/generative-ai';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+import { GeminiResponse } from '../../Model/GeminiResponse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeminiService {
 
-  private model: GenerativeModel;  // The AI model instance
-  private genAI: GoogleGenerativeAI;  // Main API client
+  private httpClient = inject(HttpClient);
 
-  constructor() {
-    // Initialize the API client with the API key from environment
-    this.genAI = new GoogleGenerativeAI('AIzaSyAolwvJ2W6VHIV-M27IRnxHXOSsosP39Eg');
-
-    // Get the specific generative model (Gemini 2.5 Flash)
-    this.model = this.genAI.getGenerativeModel({model: "gemini-2.5-flash"});
-  }
-
-  // Start a new chat session with empty history
-  async StartChat(): Promise<ChatSession> {
-    return this.model.startChat({
-      history: [],  // No previous messages at start
-      generationConfig: {
-        maxOutputTokens: 1000,  // Limit max tokens in response
-      },
-    });
-  }
-
-  // Send a user message and get the AI response text
-  async SendChatMessage(chat: ChatSession, message: string): Promise<string> {
+  /**
+   * Sends the user's message to your .NET backend API.
+   * The backend will connect to Gemini and return the AI response.
+   *
+   * @param message - User message to send to Gemini
+   * @returns AI text response
+   */
+  async SendChatToGeminiApi(message: string): Promise<string> {
     try {
-      // Send message to chat session and get the result
-      const result: GenerateContentResult = await chat.sendMessage(message);
-      const response: EnhancedGenerateContentResponse = result.response;
+      // ❗ Your backend controller route is:
+      // [Route("api/[controller]")] → /api/Gemini/ask
+      //
+      // So the correct URL is:
+      // https://localhost:7026/api/Gemini/ask LOCAL
+      // http://geminiapikey.runasp.net/api/Gemini/ask PRODUCTION
+      const response = await firstValueFrom(
+        this.httpClient.post<GeminiResponse>(
+          `${environment.geminiApikey}/ask`,
+          { message }
+        )
+      );
 
-      // Extract and return text from the AI response
-      return response.text();
+      // Extract the text from nested GeminiResponse structure
+      const text: string =
+        response?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+      if (!text)
+        throw new Error('No response text received from backend');
+
+      return text;
     } catch (error) {
-      console.error('Error in SendChatMessage Service', error);
-      // Rethrow error to be handled by caller
+      console.error('Error sending message to Backend Gemini API:', error);
       throw error;
     }
   }

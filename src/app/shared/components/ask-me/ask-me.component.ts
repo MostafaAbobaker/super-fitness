@@ -20,7 +20,7 @@ export class AskMeComponent implements OnInit, AfterViewChecked {
   userInput: string = '';  // User input text
   messages: Message[] = [];  // Array to store all messages
   isLoading: boolean = false;  // Loading state to prevent multiple requests
-  userName: string = '';
+  userName: string = 'Mohamed'; // Alternate It Then Catch From Auth
 
   isOpen: any = false;  // Chat window open/close state
   title: string = 'Hey Ask Me';  // Button or window title
@@ -32,12 +32,10 @@ export class AskMeComponent implements OnInit, AfterViewChecked {
 
   // Runs when the component loads
   async ngOnInit(): Promise<void> {
-    // Start a new chat session
-    this.chat = await this.geminiService.StartChat();
 
-    // Add welcome message from the bot
+    // Welcome message
     this.messages.push({
-      text: `Hello ${this.userName} How can I assist you today...?`,
+      text: `Hello ${this.userName}! How can I assist you today?`,
       isUser: false,
       timestamp: new Date()
     });
@@ -91,11 +89,11 @@ export class AskMeComponent implements OnInit, AfterViewChecked {
 
     try {
       // Send user message to AI and get response
-      const response: string = await this.geminiService.SendChatMessage(this.chat, userMessage);
+      const response= await this.geminiService.SendChatToGeminiApi(userMessage);
 
       // Add AI's reply to messages
       this.messages.push({
-        text: response,
+        text: response.toString(),
         isUser: false,
         timestamp: new Date()
       });
