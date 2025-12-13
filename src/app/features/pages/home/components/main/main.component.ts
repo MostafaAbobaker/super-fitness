@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {NewsBarComponent} from '../../../../../shared/components/news-bar/news-bar.component';
 import {ButtonComponent} from '../../../../../shared/components/button/button.component';
 import {TranslatePipe} from '@ngx-translate/core';
+import {BackgroundType} from '../../../../../shared/components/button/Helper/BackgroundType';
 import {NgOptimizedImage} from '@angular/common';
 
 @Component({
@@ -17,10 +18,10 @@ import {NgOptimizedImage} from '@angular/common';
 })
 export class MainComponent {
   titleStr: string = 'Get Started';
-  backGroundStr: string = 'color';
+  backGroundStr: BackgroundType = 'color';
+  linkStr: string = '/getStarted';
 
   titleEx: string = 'Explore More';
-  backGroundEx: string = 'transparent';
-
-
+  backGroundEx: BackgroundType = 'transparent';
+  linkEx: string = '/explore';
 }

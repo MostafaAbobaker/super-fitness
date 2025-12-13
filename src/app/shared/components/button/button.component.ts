@@ -1,18 +1,23 @@
 import { Component, Input } from '@angular/core';
 import {NgClass, NgOptimizedImage} from '@angular/common';
+import {RouterLink} from '@angular/router';
+import {BackgroundType} from './Helper/BackgroundType';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
   imports: [
     NgClass,
-    NgOptimizedImage
+    NgOptimizedImage,
+    RouterLink
   ],
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent {
+
+  @Input() activeLink: string = "";
   @Input() title: string = 'Get Started';
-  @Input() backgroundColor: string = 'color';
+  @Input() backgroundColor: BackgroundType = 'color';
 
   get buttonClasses(): string {
     if (this.backgroundColor === 'transparent') {
@@ -22,3 +27,5 @@ export class ButtonComponent {
     }
   }
 }
+
+

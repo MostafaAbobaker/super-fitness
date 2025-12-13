@@ -3,6 +3,7 @@ import {NewsBarComponent} from '../../../shared/components/news-bar/news-bar.com
 import {ButtonComponent} from '../../../shared/components/button/button.component';
 import {TranslatePipe} from '@ngx-translate/core';
 import {NgOptimizedImage} from '@angular/common';
+import {BackgroundType} from '../../../shared/components/button/Helper/BackgroundType';
 
 @Component({
   selector: 'app-about',
@@ -17,5 +18,6 @@ import {NgOptimizedImage} from '@angular/common';
 })
 export class AboutComponent {
   title: string = 'Get Started';
-  backGround: string = 'color';
+  backGround: BackgroundType = 'color';
+  link: string = '/getStarted';
 }

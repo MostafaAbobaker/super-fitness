@@ -1,0 +1,17 @@
+<div #chatContainer class="pb-5">
+  @if (!typeMessageCard){
+    <div class="flex gap-1 items-start">
+      <img ngSrc="../../../../assets/images/AskMe/Ellipse7.png" height="56" width="56" alt="Boot">
+      <div class="bg-[var(--secondary-color)] p-4 rounded-3xl rounded-tl-none max-w-[70%]">
+        <p class="text-white">{{ messageText }}</p>
+      </div>
+    </div>
+  } @else if (typeMessageCard){
+    <div class="flex gap-1 items-start justify-end">
+      <div class="bg-[#FF6A00]/50 p-4 rounded-3xl rounded-tr-none max-w-[70%]">
+        <p class="text-white">{{ messageText }}</p>
+      </div>
+      <img ngSrc="../../../../assets/images/AskMe/Ellipse8.png" height="56" width="56" alt="Ellipse">
+    </div>
+  }
+</div>
