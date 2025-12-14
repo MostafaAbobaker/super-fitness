@@ -1,9 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+<<<<<<< HEAD
 @import "tailwindcss";
 
 
+=======
+@use "tailwindcss";
+>>>>>>> origin/master
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400..800&display=swap');
 
 @theme {
@@ -23,6 +26,7 @@ body {
 }
 
 [data-theme="dark"] {
+<<<<<<< HEAD
   body {
     background-color: var(--secondary-color);
     color: #fff;
@@ -86,6 +90,12 @@ body {
     background: linear-gradient(0, var(--secondary-color) 0%, var(--secondary-color) 50%, rgba(255, 255, 255, 0) 100%);
   }
 }
+=======
+    body {
+    background-color: var(--secondary-color);
+    color: #fff;
+  }
+>>>>>>> origin/master
 }
 
 
