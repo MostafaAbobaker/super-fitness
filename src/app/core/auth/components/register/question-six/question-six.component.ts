@@ -67,7 +67,9 @@ constructor(private router: Router, private _registerService: RegisterService , 
     this._authService.signup(signupData).subscribe({
       next: (res) => {
         console.log(res);
-        // this.router.navigate(['/auth/login']);
+        localStorage.setItem('token', res.token);
+
+        this.router.navigate(['../']);
       },
       error: (err) => {
         console.log(err);

@@ -37,15 +37,20 @@
               }
             </li>
           -->
-          <li class="nav-item" >
-            <a href="" class="btn bg-(--primary-color) text-white p-2 px-4 rounded-[20px] cursor-pointer transition">Login</a>
-          </li>
-          <li class="nav-item" >
-            <a href="" class="btn text-(--primary-color) border border-(--primary-color) hover:text-[#fff] hover:bg-(--primary-color) p-2 px-4 rounded-[20px] cursor-pointer transition">Sign up</a>
-          </li>
-          <li class="nav-item" >
-            <button class="btn btn-primary w-[40px] h-[40px] grid place-items-center cursor-pointer bg-(--primary-color) text-white rounded-full transition"><i class="fa-regular fa-user"></i></button>
-          </li>
+            @if(!isAuthenticated) {
+              <li class="nav-item" >
+                <a routerLink="./auth/login" class="btn bg-(--primary-color) text-white p-2 px-4 rounded-[20px] cursor-pointer transition">Login</a>
+              </li>
+              <li class="nav-item" >
+                <a routerLink="./auth/register" class="btn text-(--primary-color) border border-(--primary-color) hover:text-[#fff] hover:bg-(--primary-color) p-2 px-4 rounded-[20px] cursor-pointer transition">Sign up</a>
+              </li>
+
+            } @else {
+
+              <li class="nav-item" >
+                <button class="btn btn-primary w-[40px] h-[40px] grid place-items-center cursor-pointer bg-(--primary-color) text-white rounded-full transition"><i class="fa-regular fa-user"></i></button>
+              </li>
+            }
 
           <!-- Menu Button-->
           <li class="nav-item">
@@ -68,46 +73,5 @@
           </li>
         </ul>
       </div>
-<<<<<<< HEAD
-      <ul class="navbar-nav flex">
-        <li><a class=" p-4 cursor-pointer p-4 cursor-pointer text-primary font-bold">{{"navbar.home"| translate}}</a></li>
-        <li><a class="p-4 cursor-pointer text-primary font-bold">{{"navbar.about"| translate}}</a></li>
-        <li><a class="p-4 cursor-pointer text-primary font-bold">{{"navbar.services"| translate}}</a></li>
-        <li><a class="p-4 cursor-pointer text-primary font-bold">{{"navbar.contact"| translate}} </a></li>
-      </ul>
-      <ul class="navbar-action flex items-center gap-2">
-        <li class="nav-item theme-icon">
-          <button class="dark py-2 cursor-pointer px-2 cursor-pointer" *ngIf="iconTheme == 'light'" (click)="toggleTheme()">
-            <i class="fa-solid fa-moon"></i>
-          </button>
-          <button class="light py-4 cursor-pointer px-2 cursor-pointer" *ngIf="iconTheme == 'dark'" (click)="toggleTheme()">
-            <i class="fa-solid fa-sun"></i>
-          </button>
-        </li>
-        <li class="nav-item language-icon">
-          @if(lang == 'en') {
-            <button class="rtl py-4 cursor-pointer px-2 cursor-pointer flex items-center transition" (click)="toggleDirection('ar')">
-              <img src="../../../../assets/imgs/egypt.svg" alt="" class="w-[20px] h-[20px] me-2 ">
-              <span class="font-bold">عربى</span>
-            </button>
-          } @else {
-            <button class="ltr py-4 cursor-pointer px-2 cursor-pointer flex items-center transition" (click)="toggleDirection('en')">
-              <img src="../../../../assets/imgs/united-kingdom.svg" alt="" class="w-[20px] h-[20px ] me-2"> <span class="font-bold">EN</span>
-            </button>
-
-          }
-        </li>
-        <li class="nav-item" >
-          <a [routerLink]="'/auth/login'" class="btn bg-(--primary-color) text-white p-2 px-4 rounded-[20px] cursor-pointer transition">Login</a>
-        </li>
-        <li class="nav-item" >
-          <a [routerLink]="'/auth/register'" class="btn  border border-(--primary-color) hover:bg-(--primary-color) p-2 px-4 rounded-[20px] cursor-pointer transition">Sign up</a>
-        </li>
-        <li class="nav-item" >
-          <button class="btn btn-primary w-[40px] h-[40px] grid place-items-center cursor-pointer bg-(--primary-color) text-white rounded-full  transition"><i class="fa-regular fa-user"></i></button>
-        </li>
-      </ul>
-=======
->>>>>>> origin/master
     </div>
 </nav>

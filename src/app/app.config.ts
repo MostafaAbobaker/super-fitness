@@ -1,6 +1,7 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Import from the async path
 
 /* PrimeNG */
 import { providePrimeNG } from 'primeng/config';
@@ -18,21 +19,13 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     providePrimeNG({
-<<<<<<< HEAD
-            theme: {
-                preset: Aura
-            }
-        }),
-    provideHttpClient(withInterceptors([authInterceptor])),
-=======
       theme: {
         preset: Aura,
       },
     }),
+    provideAnimationsAsync(),
+    provideHttpClient(withInterceptors([authInterceptor])),
 
-    provideHttpClient(),
-
->>>>>>> origin/master
     provideTranslateService({
       loader: provideTranslateHttpLoader({
         prefix: '/assets/i18n/',

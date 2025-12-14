@@ -3,20 +3,12 @@ import { Component, HostListener, AfterViewInit, ElementRef, ViewChild } from '@
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
 import { TranslatePipe } from '@ngx-translate/core';
-<<<<<<< HEAD
-import { RouterLink } from '@angular/router';
-
-@Component({
-  selector: 'app-navbar',
-  imports: [CommonModule,TranslatePipe, RouterLink],
-=======
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, TranslatePipe, RouterLink, RouterLinkActive, NgOptimizedImage],
->>>>>>> origin/master
+  imports: [CommonModule, TranslatePipe, RouterModule, NgOptimizedImage],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
@@ -24,7 +16,7 @@ export class NavbarComponent implements AfterViewInit {
   iconTheme: string = 'light';
   lang: string = 'en';
   isOpen: boolean = false;
-
+  isAuthenticated = localStorage.getItem('token') !== null;
   @ViewChild('navbar') navbarRef!: ElementRef<HTMLElement>;
 
   constructor(private _languageService: LanguageService, private _themeService: ThemeService) {}
