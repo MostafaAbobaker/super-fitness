@@ -1,14 +1,16 @@
 import { Routes } from '@angular/router';
-import { LayoutComponent } from './core/layout/layout.component';
-import { HomeComponent } from './features/pages/home/home.component';
-import {AboutComponent} from './features/pages/about/about.component';
 
 export const routes: Routes = [
-  {path:'', loadComponent: () => import('./core/layout/layout.component').then
-    (c => c.LayoutComponent), children: [
-      {path:'', redirectTo:'home', pathMatch:'full'},
-      {path:'home', component: HomeComponent},
-      {path:'about', component: AboutComponent},
+  { path:'', loadComponent: () => import('./core/layout/layout.component').then(c => c.LayoutComponent),
+    children: [
+      { path:'', redirectTo:'home', pathMatch:'full' },
+      { path:'home', loadComponent: () => import('./features/pages/home/home.component').then(c => c.HomeComponent) },
+      { path:'about', loadComponent: () => import('./features/pages/about/about.component').then(c => c.AboutComponent) },
+
+      {
+        path: '**',
+        loadComponent: () => import('./shared/components/not-found/not-found.component').then(c => c.NotFoundComponent)
+      }
     ]
   }
 ];

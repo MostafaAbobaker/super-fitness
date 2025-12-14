@@ -1,0 +1,92 @@
+<section class="relative">
+  <!-- btn -->
+  <div class="w-40 fixed bottom-10 z-[9999] right-40 rtl:left-40 flex flex-col items-center transition-all duration-500" [ngClass]="{'bottom-165': isOpen}">
+    <button class="z-9 cursor-pointer" (click)="AskMe()">
+      <img ngSrc="../../../../assets/images/AskMe/emo.png" alt="arrow" height="99" width="101"/>
+    </button>
+
+    <button class="cursor-pointer btn bg-[var(--primary-color)] font-bold text-white py-2 px-8 rounded-[20px] cursor-pointer transition relative shadow-primary-top-xl" (click)="AskMe()">
+      {{ title }}
+    </button>
+  </div>
+
+  <!-- Chat -->
+  <article class="w-100 fixed z-[9999] right-8 rtl:right-auto rtl:left-8 rounded-2xl border-2 border-[var(--primary-color)] transition-all duration-500 ease-in-out" [ngClass]="{ 'bottom-5 opacity-100 visible': isOpen, '-bottom-full opacity-0 invisible': !isOpen}">
+    <div class="bg-[url('/assets/images/AskMe/Rectangle1.png')] bg-no-repeat bg-cover bg-left-bottom rounded-2xl">
+      <!-- Header -->
+      <div class="flex justify-between px-4 py-10">
+        <p class="text-2xl">Smart coach</p>
+        <button>
+          <svg class="cursor-pointer" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.3923 1.87513H2.81201C1.25293 1.8156 1.25293 4.18541 2.81201 4.12588H17.3342C18.8649 4.18541 18.9245 1.87513 17.3937 1.87513H17.3923ZM2.81201 10.8753C1.31246 10.8753 1.31246 13.1246 2.81201 13.1246H11.0326C12.5634 13.1246 12.5634 10.8753 11.0326 10.8753H2.81201ZM2.81201 19.8755C1.31246 19.8755 1.31246 22.1248 2.81201 22.1248H21.2333C22.7329 22.1248 22.7329 19.8755 21.2333 19.8755H2.81201Z" fill="#FF4100"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div #chatContainer class="pb-5 space-y-4 flex-1 overflow-y-auto space-y-4 px-4 py-4 bottom-0 scroll-smooth h-100">
+
+        @for (msg of messages; track $index){
+
+          @if (!msg.isUser){
+            <!-- Bot Message -->
+            <app-message-card [typeMessageCard]="msg.isUser" [messageText]="msg.text"></app-message-card>
+          } @else if (msg.isUser){
+            <!-- User Message -->
+            <app-message-card [typeMessageCard]="msg.isUser" [messageText]="msg.text"></app-message-card>
+          }
+        }
+
+        @if (isLoading){
+          <!-- Is Loading -->
+          <div class="flex gap-4 items-start">
+            <img ngSrc="/assets/images/AskMe/Ellipse7.png" class="rounded-full flex-shrink-0" height="56" width="56" alt="Ellipse">
+            <div class="bg-[var(--secondary-color)]/70 p-4 rounded-3xl rounded-tl-none">
+              <div class="flex gap-1">
+                <span class="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></span>
+                <span class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0.1s"></span>
+                <span class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Footer -->
+      <div class="relative py-8 px-2">
+        <!-- Icon -->
+        <svg class="absolute left-5 top-1/2 -translate-y-1/2 pointer-events-none"
+             width="21"
+             height="21"
+             viewBox="0 0 21 21"
+             fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.5 17.5H17.5M15.5 6.50002L16.5 7.50002M17 4.00002C17.1971 4.19692 17.3535 4.43074 17.4602 4.68812C17.5669 4.94551 17.6219 5.2214 17.6219 5.50002C17.6219 5.77865 17.5669 6.05454 17.4602 6.31192C17.3535 6.5693 17.1971 6.80313 17 7.00002L7.5 16.5L3.5 17.5L4.5 13.556L14.004 4.00402C14.3786 3.62759 14.8811 3.40579 15.4116 3.38263C15.9422 3.35947 16.462 3.53666 16.868 3.87902L17 4.00002Z"
+                stroke="var(--primary-color)"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+        </svg>
+
+        <!-- Input -->
+        <input
+          dir="ltr"
+          type="text"
+          [(ngModel)]="userInput"
+          [disabled]="isLoading"
+          (keyup.enter)="SendMessage()"
+          placeholder="Ask Me Any Things"
+          class="w-full border border-white rounded-3xl h-10 pl-12 pr-24 text-white transition-all focus:outline-none">
+
+        <!-- Send Button -->
+        <button
+          (click)="SendMessage()"
+          [disabled]="!userInput.trim() || isLoading"
+          class="absolute cursor-pointer right-5 top-1/2 -translate-y-1/2 text-white rounded-lg p-2 hover:opacity-90 transition-opacity flex items-center justify-center">
+          <svg
+            width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </article>
+</section>
