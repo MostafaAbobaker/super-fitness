@@ -36,10 +36,10 @@
           }
         </li>
         <li class="nav-item" >
-          <a href="" class="btn bg-(--primary-color) text-white p-2 px-4 rounded-[20px] cursor-pointer transition">Login</a>
+          <a [routerLink]="'/auth/login'" class="btn bg-(--primary-color) text-white p-2 px-4 rounded-[20px] cursor-pointer transition">Login</a>
         </li>
         <li class="nav-item" >
-          <a href="" class="btn  border border-(--primary-color) hover:bg-(--primary-color) p-2 px-4 rounded-[20px] cursor-pointer transition">Sign up</a>
+          <a [routerLink]="'/auth/register'" class="btn  border border-(--primary-color) hover:bg-(--primary-color) p-2 px-4 rounded-[20px] cursor-pointer transition">Sign up</a>
         </li>
         <li class="nav-item" >
           <button class="btn btn-primary w-[40px] h-[40px] grid place-items-center cursor-pointer bg-(--primary-color) text-white rounded-full  transition"><i class="fa-regular fa-user"></i></button>

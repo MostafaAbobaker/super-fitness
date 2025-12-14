@@ -1,0 +1,36 @@
+<section class="min-h-screen grid place-items-center">
+  <div class="w-full md:max-w-[600px] px-6 md:px-12">
+    <div class="text-center mb-8">
+      <div class="count-question text-gray-300 text-4xl mb-2 font-semibold"><span>3/6</span></div>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white">what is your weight ?</h1>
+      <p class="text-gray-300 mt-2">this helps us create Your personalized plan </p>
+    </div>
+
+    <div class="text-center text-(--primary-color) font-semibold mb-2">Kg</div>
+
+    <!-- <div class="age-strip">
+      @for (n of window(); track n) {
+        <button type="button" class="age-item" [class.active]="n===age" (click)="setAge(n)">{{n}}</button>
+      }
+    </div> -->
+       <owl-carousel-o #owlCarousel [options]="customOptions" (wheel)="onWheel($event)">
+
+    @for (slide of arrayNumber; track slide; let n = $index) {
+      <ng-template carouselSlide [id]="slide.toString()" >
+               <button type="button" class="age-item" [class.active]="slide===weight" (click)="setAge(slide)">{{slide}}</button>
+
+      </ng-template>
+    }
+
+  </owl-carousel-o>
+    <!-- <div class="flex flex-col items-center mt-4">
+      <button class="arrow" (click)="inc()"><i class="fa-solid fa-caret-up"></i></button>
+      <button class="arrow" (click)="dec()"><i class="fa-solid fa-caret-down"></i></button>
+    </div> -->
+
+    <div class="mt-8 flex justify-between gap-2">
+      <button class="back-btn w-full" (click)="backStep()" >Back</button>
+      <button class="next-btn w-full" (click)="nextStep()">Next</button>
+    </div>
+  </div>
+</section>
