@@ -92,20 +92,27 @@ export class AskMeComponent implements OnInit, AfterViewChecked {
     try {
       // Send user message to AI and get response
       this.geminiService.SendChatToGeminiApi(userMessage).subscribe({
+
         next: (responseText: string) => {
           this.messages.push({
             text: responseText,
             isUser: false,
             timestamp: new Date()
           });
+
+          this.isLoading = false;
         },
         error: (error) => {
+
           console.error('Error:', error);
+
           this.messages.push({
             text: 'Sorry, I encountered an error.',
             isUser: false,
             timestamp: new Date()
           });
+
+          this.isLoading = false;
         }
       });
     }
@@ -118,8 +125,7 @@ export class AskMeComponent implements OnInit, AfterViewChecked {
         isUser: false,
         timestamp: new Date()
       });
-    } finally {
-      // Clear loading state
+
       this.isLoading = false;
     }
   }
