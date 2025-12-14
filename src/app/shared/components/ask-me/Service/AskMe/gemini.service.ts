@@ -21,7 +21,7 @@ export class GeminiService {
    * @returns AI text response
    */
   SendChatToGeminiApi(message: string): Observable <string> {
-    return this.httpClient.post<GeminiResponse>(`${environment.geminiApikey}/api/gemini/ask`, { message }).pipe(
+    return this.httpClient.post<GeminiResponse>(`${environment.geminiApikey}/ask`, { message }).pipe(
       map((response: GeminiResponse): string => {
         this.text = response?.candidates?.[0]?.content?.parts?.[0]?.text;
 
