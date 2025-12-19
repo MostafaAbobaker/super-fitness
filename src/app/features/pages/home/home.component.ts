@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { MainComponent } from "./components/main/main.component";
-import {AboutComponent} from '../about/about.component';
-import {BestWayComponent} from './components/best-way/best-way.component';
+import { AboutComponent } from "../about/about.component";
+
+
 
 @Component({
   selector: 'app-home',
-  imports: [MainComponent, AboutComponent, BestWayComponent],
+  imports: [MainComponent, AboutComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

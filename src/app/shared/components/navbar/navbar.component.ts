@@ -3,20 +3,23 @@ import { Component, HostListener, AfterViewInit, ElementRef, ViewChild } from '@
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
 import { TranslatePipe } from '@ngx-translate/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-
+import { RouterModule } from '@angular/router';
+import { MenuModule } from 'primeng/menu';
+import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, TranslatePipe, RouterLink, RouterLinkActive, NgOptimizedImage],
+  imports: [ TranslatePipe, RouterModule, NgOptimizedImage,MenuModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements AfterViewInit {
   iconTheme: string = 'light';
+  items: MenuItem[] | undefined;
+
   lang: string = 'en';
   isOpen: boolean = false;
-
+  isAuthenticated = localStorage.getItem('token') !== null;
   @ViewChild('navbar') navbarRef!: ElementRef<HTMLElement>;
 
   constructor(private _languageService: LanguageService, private _themeService: ThemeService) {}
@@ -24,6 +27,23 @@ export class NavbarComponent implements AfterViewInit {
   ngOnInit(): void {
     this.lang = this._languageService.language();
     this.iconTheme = this._themeService.theme();
+    this.items = [
+            {
+                items: [
+                    {
+                        label: 'Refresh',
+                        icon: 'fa-solid fa-arrows-rotate'
+                    },
+                    {
+                        label: 'Logout',
+                        icon: 'fa-solid fa-right-from-bracket',
+                        command: () => {
+                            this.logOut();
+                        }
+                    }
+                ]
+            }
+        ];
   }
 
   ngAfterViewInit(): void {
@@ -63,5 +83,9 @@ export class NavbarComponent implements AfterViewInit {
       nav.classList.remove('bg-[#F3F3F4]', 'dark:bg-[var(--secondary-color)]');
       nav.classList.add('bg-transparent', 'dark:bg-transparent');
     }
+  }
+  logOut(){
+    localStorage.removeItem('token');
+    this.isAuthenticated = false;
   }
 }

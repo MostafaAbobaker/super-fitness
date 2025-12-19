@@ -1,0 +1,66 @@
+
+.next-btn , .back-btn {
+  color: #fff;
+  padding: 14px 16px;
+  border-radius: 9999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.next-btn {
+  background-color: var(--primary-color);
+
+}
+.back-btn {
+  background-color: var(--secondary-color);
+}
+
+
+.count-question {
+  font-size: 24px;
+  font-weight: 600;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  margin: 0 auto 8px;
+  // border: 1px solid rgba(255,255,255,0.5);
+  position: relative;
+      isolation: isolate;
+  span {
+  background-color: #393939;
+    width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    height: 110%;
+    border-radius: 9999px;
+    /* https://grabient.com/HQNgTAHANMAsEFYZjLKBaADMAzARmi2DAE4QZYTDtY8wNswQSY8B2cvXJh4BE+ui6ZMOIA?style=angularSwatches&steps=15&angle=210 */
+    z-index: -1;
+                                            /* https://grabient.com/HQJgjAnANMEBzWAVgMwppA7DTKAsMEYAbBktqGBSHHFCMsQSskgAxR7CZhxA?style=angularSwatches&steps=13&angle=45 */
+
+    /* https://grabient.com/HQVhCYBpQDgTmgNgMwAZoQOzQCxuspgsODNsAIwiLQWZTKjjojCJWQXA7iJA?style=angularGradient&steps=5&angle=90 */
+
+background: conic-gradient(from -90deg, var(--primary-color) 0.000deg,
+                                        var(--primary-color) 59.000deg,
+                                         var(--primary-color) 60deg,
+                                         var(--primary-color) 119deg,
+                                         var(--primary-color) 120deg,
+                                         var(--primary-color) 179deg,
+                                        var(--primary-color) 180deg,
+                                        var(--primary-color) 239deg,
+                                        var(--primary-color) 240deg,
+                                        var(--primary-color) 299deg,
+                                        var(--primary-color) 300deg,
+                                        var(--primary-color) 360deg)
+  }
+} 
