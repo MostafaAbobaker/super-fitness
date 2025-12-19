@@ -19,9 +19,9 @@ export class ForgetPasswordComponent {
   private fb = inject(FormBuilder);
   private messageService = inject(MessageService);
    subscription:  Subscription | undefined;
-  
+
   forgetPassword:boolean = true;
-  
+
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],

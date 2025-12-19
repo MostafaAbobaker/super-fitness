@@ -5,12 +5,9 @@ export const routes: Routes = [
     children: [
       { path:'', redirectTo:'home', pathMatch:'full' },
       { path:'home', loadComponent: () => import('./features/pages/home/home.component').then(c => c.HomeComponent) },
-      { path:'about', loadComponent: () => import('./features/pages/about/about.component').then(c => c.AboutComponent) },
+      { path:'about', loadComponent: () => import('./features/pages/about/about.component').then(c => c.AboutComponent) }
 
-      {
-        path: '**',
-        loadComponent: () => import('./shared/components/not-found/not-found.component').then(c => c.NotFoundComponent)
-      }
+
     ]
   },
   {path:'auth', loadComponent: () => import('./core/auth/auth.component').then(c => c.AuthComponent), children: [
@@ -25,5 +22,9 @@ export const routes: Routes = [
     {path:'register/question-six', loadComponent: () => import('./core/auth/components/register/question-six/question-six.component').then(c => c.QuestionSixComponent)},
     {path:'forget-password', loadComponent: () => import('./core/auth/components/forget-password/forget-password.component').then(c => c.ForgetPasswordComponent)},
 
-  ]}
+  ]},
+  {
+        path: '**',
+        loadComponent: () => import('./shared/components/not-found/not-found.component').then(c => c.NotFoundComponent)
+      }
 ];
