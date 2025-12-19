@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { finalize } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent {
   submitting = false;
   showPassword = false;
   serverError = '';
-
+  subscription:  Subscription | undefined;
   submit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -32,11 +33,8 @@ export class LoginComponent {
     this.serverError = '';
     this.submitting = true;
     const { email, password } = this.form.value;
-    this.auth
-      .signin({ email: email as string, password: password as string })
-      .pipe(finalize(() => (this.submitting = false)))
-      .subscribe({
-        next: (res) => {
+    this.subscription= this.auth.signin({ email: email as string, password: password as string }).subscribe({
+        next: (res) => {  
           const token = (res as any)?.token || (res as any)?.data?.token || '';
           if (token) {
             localStorage.setItem('fitness_token', token);
@@ -54,4 +52,8 @@ export class LoginComponent {
 
   get email() { return this.form.get('email'); }
   get password() { return this.form.get('password'); }
+
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
+  }
 }

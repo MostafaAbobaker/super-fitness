@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@use "tailwindcss";
+@import "tailwindcss";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400..800&display=swap');
 
@@ -110,4 +110,10 @@ body {
       border-color: var(--primary-color);
     }
   }
+}
+
+/* Navbar */
+.navbar-action .nav-item .p-menu-overlay {
+  top: 100% !important;
+  left: 0 !important;
 }

@@ -61,4 +61,10 @@
   padding: 14px 16px;
   border-radius: 9999px;
   font-weight: 600;
+  cursor: pointer;
+}
+.btn-primary:disabled {
+  background: rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.8);
+  cursor: not-allowed;
 }

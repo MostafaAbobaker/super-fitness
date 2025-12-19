@@ -15,12 +15,15 @@
 
         <ul class="navbar-action flex items-center gap-2">
           <li class="nav-item theme-icon">
-            <button class="dark py-2 cursor-pointer px-2" *ngIf="iconTheme == 'light'" (click)="toggleTheme()">
+            @if(iconTheme == 'light') {
+            <button class="dark py-2 cursor-pointer px-2"  (click)="toggleTheme()">
               <i class="fa-solid fa-moon text-black dark:text-white"></i>
             </button>
-            <button class="light py-4 cursor-pointer px-2" *ngIf="iconTheme == 'dark'" (click)="toggleTheme()">
+          } @else if(iconTheme == 'dark') {
+            <button class="light py-4 cursor-pointer px-2"  (click)="toggleTheme()">
               <i class="fa-solid fa-sun text-black dark:text-white"></i>
             </button>
+          }
           </li>
           <!-- Language selection should be only in User Account Page -->
           <!--
@@ -47,8 +50,13 @@
 
             } @else {
 
-              <li class="nav-item" >
-                <button class="btn btn-primary w-[40px] h-[40px] grid place-items-center cursor-pointer bg-(--primary-color) text-white rounded-full transition"><i class="fa-regular fa-user"></i></button>
+              <li class="nav-item relative" >
+
+                <button class="btn btn-primary  w-[40px] h-[40px] grid place-items-center cursor-pointer bg-(--primary-color) text-white rounded-full transition" (click)="menu.toggle($event)">
+                  <i class="fa-regular fa-user"></i>
+                  </button>
+                  <p-menu #menu [model]="items" [popup]="true" class="top-[100%] left-0" />
+
               </li>
             }
 

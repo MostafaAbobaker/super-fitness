@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { MainComponent } from "./components/main/main.component";
 import { AboutComponent } from "../about/about.component";
-import { NewsBarComponent } from "../../../shared/components/news-bar/news-bar.component";
 
 
 
 @Component({
   selector: 'app-home',
-  imports: [MainComponent, AboutComponent, NewsBarComponent],
+  imports: [MainComponent, AboutComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

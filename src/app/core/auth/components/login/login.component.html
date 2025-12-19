@@ -47,7 +47,7 @@
           </div>
 
           @if(serverError) {<p class="text-red-500 text-sm mb-3">{{serverError}}</p>}
-          <button type="submit" class="w-full btn-primary" [disabled]="submitting">Login</button>
+          <button type="submit" class="w-full btn-primary" [disabled]="form.invalid">Login</button>
 
           <div class="text-center mt-4 text-gray-300">
             <span>Dont Have An Account Yet ? </span>

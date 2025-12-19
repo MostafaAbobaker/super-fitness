@@ -20,6 +20,7 @@ export const routes: Routes = [
     {path:'register/question-four', loadComponent: () => import('./core/auth/components/register/question-four/question-four.component').then(c => c.QuestionFourComponent)},
     {path:'register/question-five', loadComponent: () => import('./core/auth/components/register/question-five/question-five.component').then(c => c.QuestionFiveComponent)},
     {path:'register/question-six', loadComponent: () => import('./core/auth/components/register/question-six/question-six.component').then(c => c.QuestionSixComponent)},
-    {path:'forget-password', loadComponent: () => import('./core/auth/components/forget-password/forget-password.component').then(c => c.ForgetPasswordComponent)}
+    {path:'forget-password', loadComponent: () => import('./core/auth/components/forget-password/forget-password.component').then(c => c.ForgetPasswordComponent)},
+    
   ]}
 ];

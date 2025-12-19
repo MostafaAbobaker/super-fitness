@@ -6,7 +6,7 @@
       <p class="text-gray-300 mt-2">this helps us create Your personalized plan</p>
     </div>
     <form class="flex flex-col gap-4" >
-        @for(Goal of Goals; track Goal){
+        @for(Goal of Goals; track i; let i = $index){
         <div class="field-checkbox">
             <p-radiobutton [inputId]="Goal" name="goal" [value]="Goal"  [(ngModel)]="goalSelected" />
             <label [for]="Goal" class="ml-2">{{ Goal }}</label>

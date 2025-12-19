@@ -1,3 +1,7 @@
 .active-like{
   color: var(--primary-color);
 }
+.navbar-action .nav-item .p-menu-overlay {
+  top: 100% !important;
+  left: 0 !important;
+}

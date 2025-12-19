@@ -6,7 +6,7 @@
       <p class="text-gray-300 mt-2">this helps us create Your personalized plan </p>
     </div>
     <form class="flex flex-col gap-4" >
-        @for(activity of activityLevel; track activity; let i =$index){
+        @for(activity of activityLevel; track i; let i =$index){
         <div class="field-checkbox">
             <p-radiobutton [inputId]="activity.key" name="activityLevel" [value]="activity.key" [(ngModel)]="activityLevelSelected" />
             <label [for]="activity.key" class="ml-2">{{ activity.value }}</label>

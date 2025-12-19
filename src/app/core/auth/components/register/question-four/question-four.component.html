@@ -15,7 +15,7 @@
     </div> -->
        <owl-carousel-o #owlCarousel [options]="customOptions" (wheel)="onWheel($event)">
 
-    @for (slide of arrayNumber; track slide; let n = $index) {
+    @for (slide of arrayNumber; track n; let n = $index) {
       <ng-template carouselSlide [id]="slide.toString()" >
                <button type="button" class="age-item" [class.active]="slide===height " (click)="setAge(slide)">{{slide}}</button>
 
