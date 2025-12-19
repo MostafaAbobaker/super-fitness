@@ -18,6 +18,8 @@
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.15",
     "@fortawesome/fontawesome-free": "^7.1.0",
+    "@google/genai": "^1.31.0",
+    "@google/generative-ai": "^0.24.1",
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
     "@primeng/themes": "^20.3.0",

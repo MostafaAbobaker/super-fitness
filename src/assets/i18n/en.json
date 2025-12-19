@@ -44,7 +44,6 @@
     "step3Title": "State-Of-The-Art Equipment",
     "step3Description": "We provide the latest in gym equipment, from cardio machines to free weights, designed to support every type."
   },
-
   "hero": {
     "title1": "Your body can",
     "highlight": "stand",
@@ -60,6 +59,17 @@
 
     "stat3Number": "20+",
     "stat3Text": "Year Of Experience"
+  },
+  "notFound": {
+    "title": "Page Not",
+    "highlight": "Found",
+    "description": "Looks like this page skipped leg day... We couldn't find what you're looking for. Let's get you back on track to crushing your fitness goals!",
+    "stat1": "Excuses Allowed",
+    "stat2": "Effort Required",
+    "stat3": "We're Here",
+    "homeBtn": "Back to Home",
+    "backBtn": "Go Back",
+    "quote": "The only bad workout is the one that didn't happen. The only bad page is the one you can't find.",
+    "quoteAuthor": "Fitness Philosophy"
   }
-
 }
