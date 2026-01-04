@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QuestionSixComponent } from './question-six.component';
+import { ButtonSubmitComponent } from './button-submit.component';
 
-describe('QuestionSixComponent', () => {
-  let component: QuestionSixComponent;
-  let fixture: ComponentFixture<QuestionSixComponent>;
+describe('ButtonSubmitComponent', () => {
+  let component: ButtonSubmitComponent;
+  let fixture: ComponentFixture<ButtonSubmitComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QuestionSixComponent]
+      imports: [ButtonSubmitComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(QuestionSixComponent);
+    fixture = TestBed.createComponent(ButtonSubmitComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

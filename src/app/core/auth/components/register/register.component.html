@@ -16,7 +16,7 @@
                 <input id="firstName" type="text" formControlName="firstName" placeholder="First Name">
               </div>
               @if(firstName?.touched && firstName?.invalid) {
-                <p class="text-red-500 text-sm mt-1">First name is required</p>
+                <app-error-message errorMessage="First name is required"></app-error-message>
               }
             </div>
   
@@ -26,7 +26,7 @@
                 <input id="lastName" type="text" formControlName="lastName" placeholder="Last Name">
               </div>
               @if(lastName?.touched && lastName?.invalid) {
-                <p class="text-red-500 text-sm mt-1">Last name is required</p>
+                <app-error-message errorMessage="Last name is required"></app-error-message>
               }
             </div>
   
@@ -36,7 +36,7 @@
                 <input id="email" type="email" formControlName="email" placeholder="Email">
               </div>
               @if(email?.touched && email?.invalid) {
-                <p class="text-red-500 text-sm mt-1">Enter a valid email</p>
+                <app-error-message errorMessage="Enter a valid email"></app-error-message>
               }
             </div>
   
@@ -47,7 +47,7 @@
                 <button type="button" class="toggle" (click)="togglePassword()"><i class="fa-regular" [class]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i></button>
               </div>
               @if(password?.touched && password?.invalid) {
-                <p class="text-red-500 text-sm mt-1">Password is required (min 6)</p>
+                <app-error-message errorMessage="Password is required (min 6)"></app-error-message>
               }
             </div>
             <div class="mb-2">
@@ -58,7 +58,7 @@
               </div>
               @if(rePassword?.touched && rePassword?.invalid) {
                 @if(rePassword?.errors?.['mismatch']) {
-                  <p class="text-red-500 text-sm mt-1">Passwords do not match</p>
+                  <app-error-message errorMessage="Passwords do not match"></app-error-message>
                 }
               }
             </div>
@@ -79,7 +79,7 @@
               <button type="button" class="social-btn"><i class="fa-brands fa-apple"></i></button>
             </div>
   
-            <button type="submit" class="w-full btn-primary" [disabled]="form.invalid" >Register</button>
+            <app-button-submit [form]="form" buttonText="Register"></app-button-submit>
   
             <div class="text-center mt-4 text-gray-300">
               <span>Already Have An Account ? </span>
@@ -91,7 +91,7 @@
 
 }
 @else { 
-  <app-question-one></app-question-one>
+  <app-gender></app-gender>
   <!-- <app-question-two></app-question-two> -->
 }
     </section>

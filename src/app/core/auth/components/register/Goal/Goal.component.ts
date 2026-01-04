@@ -6,12 +6,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-question-five',
+  selector: 'app-Goal',
   imports: [ CommonModule ,RadioButtonModule,FormsModule],
-  templateUrl: './question-five.component.html',
-  styleUrl: './question-five.component.scss'
+  templateUrl: './Goal.component.html',
+  styleUrl: './Goal.component.scss'
 })
-export class QuestionFiveComponent {
+export class GoalComponent {
   goalSelected: string = '';
   name:string = '';
 
@@ -41,7 +41,5 @@ export class QuestionFiveComponent {
    
     this.router.navigate(['/auth/register/question-six']);
   }
-  backStep() {
-    this.router.navigate(['/auth/register/question-four']);
-  }
+  
 }

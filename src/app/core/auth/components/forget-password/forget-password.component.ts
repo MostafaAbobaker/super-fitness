@@ -6,10 +6,12 @@ import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { OtpComponent } from "../otp/otp.component";
 import { Subscription } from 'rxjs';
+import { ErrorMessageComponent } from '../../../../shared/components/error-message/error-message.component';
+import { ButtonSubmitComponent } from '../../../../shared/components/button-submit/button-submit.component';
 @Component({
   selector: 'app-forget-password',
-  imports: [ReactiveFormsModule, ToastModule, OtpComponent],
-  templateUrl: './forget-password.component.html',
+  imports: [ReactiveFormsModule, ToastModule, OtpComponent, ErrorMessageComponent, ButtonSubmitComponent],
+  templateUrl: './forget-password.component.html',  
   styleUrl: './forget-password.component.scss',
   providers: [MessageService]
 

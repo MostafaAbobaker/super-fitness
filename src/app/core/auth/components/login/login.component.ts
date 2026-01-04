@@ -5,10 +5,12 @@ import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { finalize } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { ErrorMessageComponent } from '../../../../shared/components/error-message/error-message.component';
+import { ButtonSubmitComponent } from '../../../../shared/components/button-submit/button-submit.component';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, ErrorMessageComponent, ButtonSubmitComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

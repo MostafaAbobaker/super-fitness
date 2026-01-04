@@ -6,6 +6,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from '../../../core/auth/services/auth.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -22,7 +23,7 @@ export class NavbarComponent implements AfterViewInit {
   isAuthenticated = localStorage.getItem('token') !== null;
   @ViewChild('navbar') navbarRef!: ElementRef<HTMLElement>;
 
-  constructor(private _languageService: LanguageService, private _themeService: ThemeService) {}
+  constructor(private _languageService: LanguageService, private _themeService: ThemeService , private _authService: AuthService) {}
 
   ngOnInit(): void {
     this.lang = this._languageService.language();
@@ -85,7 +86,15 @@ export class NavbarComponent implements AfterViewInit {
     }
   }
   logOut(){
-    localStorage.removeItem('token');
-    this.isAuthenticated = false;
+    this._authService.logout().subscribe({
+      next: (res) => {
+        console.log(res);
+        localStorage.removeItem('token');
+        this.isAuthenticated = false;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 }

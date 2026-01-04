@@ -1,52 +1,52 @@
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component,  inject,  ViewChild } from '@angular/core';
-import { FormBuilder,  ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CarouselComponent, CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { CarouselModule, OwlOptions, CarouselComponent } from 'ngx-owl-carousel-o';
 import { RegisterService } from '../../../services/register.service';
 
 @Component({
-  selector: 'app-question-four',
-  imports: [CommonModule, ReactiveFormsModule,CarouselModule],
-  templateUrl: './question-four.component.html',
-  styleUrl: './question-four.component.scss'
+  selector: 'app-Old',
+  imports: [CommonModule, ReactiveFormsModule,CarouselModule ],
+  templateUrl: './Old.component.html',
+  styleUrl: './Old.component.scss',
+
 })
-export class QuestionFourComponent {
-  private fb = inject(FormBuilder);
+export class OldComponent {
+  private fb = new FormBuilder();
+  form = this.fb.group({ age: [27, [Validators.required, Validators.min(12), Validators.max(100)]] });
 
-  form = this.fb.group({ height: [167, [Validators.required, Validators.min(60), Validators.max(250)]] });
-
-  min = 60;
-  max = 250;
+  min = 12;
+  max = 100;
   arrayNumber: number[] = [];
   customOptions!: OwlOptions;
 
   @ViewChild('owlCarousel') owl?: CarouselComponent;
 
-  constructor(private router: Router, private _registerService: RegisterService) {
+  constructor(private router: Router , private _registerService: RegisterService) {
     this.buildNumbers();
     this.initCarouselOptions();
   }
 
-  get height () { return this.form.get('height')?.value as number; }
+  get age() { return this.form.get('age')?.value as number; }
 
   setAge(val: number) {
     if (val < this.min || val > this.max) return;
-    this.form.patchValue({ height : val });
+    this.form.patchValue({ age: val });
   }
 
-  inc() { this.setAge(this.height  + 1); }
-  dec() { this.setAge(this.height  - 1); }
+  inc() { this.setAge(this.age + 1); }
+  dec() { this.setAge(this.age - 1); }
 
   window(): number[] {
-    const start = Math.max(this.min, this.height  - 3);
-    const end = Math.min(this.max, this.height  + 3);
+    const start = Math.max(this.min, this.age - 3);
+    const end = Math.min(this.max, this.age + 3);
     const res: number[] = [];
     for (let i = start; i <= end; i++) res.push(i);
     return res;
   }
 
- 
+  
 
   buildNumbers() {
     this.arrayNumber = [];
@@ -54,7 +54,7 @@ export class QuestionFourComponent {
   }
 
   initCarouselOptions() {
-    const startIndex = Math.max(0, this.arrayNumber.indexOf(this.height));
+    const startIndex = Math.max(0, this.arrayNumber.indexOf(this.age));
     this.customOptions = {
       items: 7,
       autoplayHoverPause: true,
@@ -75,7 +75,7 @@ export class QuestionFourComponent {
       nav: false
     };
   }
- 
+
   onWheel(event: WheelEvent) {
     event.preventDefault();
     if (!this.owl) return;
@@ -85,14 +85,15 @@ export class QuestionFourComponent {
       this.owl.prev();
     }
   }
-nextStep() {
+  next() {
     
     if (this.form.invalid) return;
-    this._registerService.height.set(this.height.toString()); 
-    console.log(this._registerService.height());
-    this.router.navigate(['/auth/register/question-five']);
-  }
-  backStep() {
+    console.log(this.form.value);
+
+
+    this._registerService.age.set(this.age.toString());
+    console.log(this._registerService.age());
     this.router.navigate(['/auth/register/question-three']);
   }
+ 
 }

@@ -31,4 +31,7 @@ export class AuthService {
   newPassword(payload: any): Observable<NewPasswordResponse> {
     return this.http.put<NewPasswordResponse>('auth/resetPassword', payload);
   }
+  logout(): Observable<any> {
+    return this.http.post<any>('auth/logout', {});
+  }
 }

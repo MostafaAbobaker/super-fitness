@@ -6,12 +6,12 @@ import { CarouselComponent, CarouselModule, OwlOptions } from 'ngx-owl-carousel-
 import { RegisterService } from '../../../services/register.service';
 
 @Component({
-  selector: 'app-question-three',
+  selector: 'app-weight',
   imports: [CommonModule, ReactiveFormsModule,CarouselModule],
-  templateUrl: './question-three.component.html',
-  styleUrl: './question-three.component.scss'
+  templateUrl: './weight.component.html',
+  styleUrl: './weight.component.scss'
 })
-export class QuestionThreeComponent {
+export class WeightComponent {
  private fb = inject(FormBuilder);
 
   form = this.fb.group({ weight: [90, [Validators.required, Validators.min(12), Validators.max(100)]] });
@@ -91,7 +91,5 @@ nextStep() {
     console.log(this._registerService.weight());
     this.router.navigate(['/auth/register/question-four']);
   }
-  backStep() {
-    this.router.navigate(['/auth/register/question-two']);
-  }
+  
 }

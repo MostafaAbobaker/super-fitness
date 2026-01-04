@@ -6,10 +6,11 @@ import { AuthService } from '../../services/auth.service';
 import { InputOtpModule } from 'primeng/inputotp';
 import { NewPasswordComponent } from '../new-password/new-password.component';
 import { Subscription } from 'rxjs';
+import { ButtonSubmitComponent } from '../../../../shared/components/button-submit/button-submit.component';
 
 @Component({
   selector: 'app-otp',
-  imports: [ToastModule, ReactiveFormsModule,InputOtpModule,NewPasswordComponent],
+  imports: [ToastModule, ReactiveFormsModule,InputOtpModule,NewPasswordComponent, ButtonSubmitComponent],
   templateUrl: './otp.component.html',
   styleUrl: './otp.component.scss',
   providers: [MessageService]

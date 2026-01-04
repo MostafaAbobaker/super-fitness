@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
 import { RegisterService } from '../../../services/register.service';
 
 @Component({
-  selector: 'app-question-one',
+  selector: 'app-gender',
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './question-one.component.html',
-  styleUrl: './question-one.component.scss'
+  templateUrl: './gender.component.html',
+  styleUrl: './gender.component.scss'
 })
-export class QuestionOneComponent {
+export class GenderComponent {
   form = new FormBuilder().group({
     gender: ['', Validators.required]
   });

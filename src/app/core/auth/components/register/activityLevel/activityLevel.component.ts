@@ -6,12 +6,12 @@ import { RegisterService } from '../../../services/register.service';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
-  selector: 'app-question-six',
+  selector: 'app-activityLevel',
   imports: [FormsModule,RadioButtonModule],
-  templateUrl: './question-six.component.html',
-  styleUrl: './question-six.component.scss'
+  templateUrl: './activityLevel.component.html',
+  styleUrl: './activityLevel.component.scss'
 })
-export class QuestionSixComponent {
+export class ActivityLevelComponent {
 /* form = new FormGroup({
     activityLevel: new FormControl('', Validators.required)
   }); */
@@ -66,10 +66,9 @@ constructor(private router: Router, private _registerService: RegisterService , 
     
     this._authService.signup(signupData).subscribe({
       next: (res) => {
-        console.log(res);
-        localStorage.setItem('token', res.token);
+       
 
-        this.router.navigate(['../']);
+        this.router.navigate(['/auth/login']);
       },
       error: (err) => {
         console.log(err);
@@ -78,8 +77,6 @@ constructor(private router: Router, private _registerService: RegisterService , 
    
     this.router.navigate(['/auth/register/question-six']);
   }
-  backStep() {
-    this.router.navigate(['/auth/register/question-four']);
-  }
+ 
 
 }

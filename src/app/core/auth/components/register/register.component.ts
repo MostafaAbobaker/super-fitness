@@ -2,12 +2,14 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { QuestionOneComponent } from './question-one/question-one.component';
 import { RegisterService } from '../../services/register.service';
+import { ErrorMessageComponent } from '../../../../shared/components/error-message/error-message.component';
+import { ButtonSubmitComponent } from '../../../../shared/components/button-submit/button-submit.component';
+import { GenderComponent } from './gender/gender.component';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink,QuestionOneComponent, ],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, ErrorMessageComponent, ButtonSubmitComponent, GenderComponent ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
