@@ -2,6 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
+import {
+  HealthyCategoryResponse,
+  HealthyListResponse,
+  MealsResponse,
+} from '../interfaces/healthy';
 
 @Injectable({
   providedIn: 'root',
@@ -9,15 +14,19 @@ import { environment } from '../../../../../environments/environment';
 export class HealthyService {
   constructor(private http: HttpClient) {}
 
-  getMealsCategoies(): Observable<any> {
-    return this.http.get(`${environment.HealthyUrl}categories.php`);
+  getMealsCategoies(): Observable<HealthyCategoryResponse> {
+    return this.http.get<HealthyCategoryResponse>(
+      `${environment.HealthyUrl}categories.php`
+    );
   }
-  getMealsByCategory(categoryName: string): Observable<any> {
-    return this.http.get(
+  getMealsByCategory(categoryName: string): Observable<HealthyListResponse> {
+    return this.http.get<HealthyListResponse>(
       `${environment.HealthyUrl}filter.php?c=${categoryName}`
     );
   }
-  getMealById(id: string): Observable<any> {
-    return this.http.get(`${environment.HealthyUrl}lookup.php?i=${id}`);
+  getMealById(id: string): Observable<MealsResponse> {
+    return this.http.get<MealsResponse>(
+      `${environment.HealthyUrl}lookup.php?i=${id}`
+    );
   }
 }

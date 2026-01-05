@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
+import { AllMusclesResponse, MusclesResponse } from '../interfaces/classes';
 
 @Injectable({
   providedIn: 'root',
@@ -9,19 +10,17 @@ import { environment } from '../../../../../environments/environment';
 export class ClassesService {
   constructor(private http: HttpClient) {}
 
-  getAllMuscles(): Observable<any> {
-    return this.http.get(`${environment.apiUrl}muscles`, {
-      headers: { 'accept-language': 'en' },
-    });
+  getAllMuscles(): Observable<AllMusclesResponse> {
+    return this.http.get<AllMusclesResponse>(`${environment.apiUrl}muscles`);
   }
-  getMusclesRandom(): Observable<any> {
-    return this.http.get(`${environment.apiUrl}muscles/random`, {
-      headers: { 'accept-language': 'en' },
-    });
+  getMusclesRandom(): Observable<MusclesResponse> {
+    return this.http.get<MusclesResponse>(
+      `${environment.apiUrl}muscles/random`
+    );
   }
-  getMusclesById(id: string): Observable<any> {
-    return this.http.get(`${environment.apiUrl}musclesGroup/${id}`, {
-      headers: { 'accept-language': 'en' },
-    });
+  getMusclesById(id: string): Observable<MusclesResponse> {
+    return this.http.get<MusclesResponse>(
+      `${environment.apiUrl}musclesGroup/${id}`
+    );
   }
 }

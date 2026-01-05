@@ -4,7 +4,7 @@
   <!-- classes -->
   <ul class="flex flex-wrap justify-center gap-4 my-5">
     <li>
-      <app-full-body (click)="getMusclesRandom()"></app-full-body>
+      <app-full-body-btn (click)="getMusclesRandom()"></app-full-body-btn>
     </li>
     @for (muscles of musclesList; track muscles._id) {
     <li>

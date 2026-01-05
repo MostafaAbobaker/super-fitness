@@ -3,9 +3,8 @@ import { HealthyService } from './services/healthy.service';
 import { chunkArray } from '../../../shared/services/chunk.util';
 import { CategoryComponent } from './components/category/category.component';
 import { HealthyCategory, HealthyList } from './interfaces/healthy';
-import { TranslatePipe } from '@ngx-translate/core';
-import { ButtonCategoryComponent } from "../../../shared/components/button-category/button-category.component";
-import { HealthyHeaderComponent } from "../../../shared/components/healthy-header/healthy-header.component";
+import { ButtonCategoryComponent } from '../../../shared/components/button-category/button-category.component';
+import { HealthyHeaderComponent } from '../../../shared/components/healthy-header/healthy-header.component';
 
 @Component({
   selector: 'app-healthy',
@@ -27,7 +26,6 @@ export class HealthyComponent implements OnInit {
     this.healthyService.getMealsCategoies().subscribe({
       next: (res) => {
         this.categoriesList = res.categories;
-        console.log(this.categoriesList);
       },
     });
   }
@@ -36,7 +34,6 @@ export class HealthyComponent implements OnInit {
     this.healthyService.getMealsByCategory(id).subscribe({
       next: (res) => {
         this.mealsCategory = chunkArray(res.meals, 6);
-        console.log(this.mealsCategory);
       },
     });
   }

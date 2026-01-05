@@ -2,10 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CarouselModule } from 'primeng/carousel';
 import { HealthyList } from '../../interfaces/healthy';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../../../../shared/services/language.service';
 
 @Component({
   selector: 'app-category',
-  imports: [CarouselModule, RouterLink],
+  imports: [CarouselModule, RouterLink, TranslateModule],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss',
 })
@@ -14,6 +16,7 @@ export class CategoryComponent implements OnInit {
   @Input() mealsGroup: HealthyList[][] = [] as HealthyList[][];
 
   ngOnInit(): void {
+
     this.responsiveOptions = [
       {
         breakpoint: '1400px',

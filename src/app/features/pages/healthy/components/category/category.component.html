@@ -29,8 +29,12 @@
           }
           <div class="w-full absolute bottom-0 left-0 p-2 bg-[#24242499]">
             <div class="mb-4 font-medium">{{ item.strMeal }}</div>
-            <a class="text-(--primary-color)">
-              Explore <i class="fa-solid fa-circle-arrow-right"></i>
+            <a
+              [routerLink]="['/mealsDetails', item.idMeal]"
+              class="text-(--primary-color)"
+            >
+              {{ "classes.explore" | translate }}
+              <i class="fa-solid fa-circle-arrow-right"></i>
             </a>
           </div>
         </div>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FullBodyComponent } from './full-body.component';
+import { FullBodyBtnComponent } from './full-body-btn.component';
 
-describe('FullBodyComponent', () => {
-  let component: FullBodyComponent;
-  let fixture: ComponentFixture<FullBodyComponent>;
+describe('FullBodyBtnComponent', () => {
+  let component: FullBodyBtnComponent;
+  let fixture: ComponentFixture<FullBodyBtnComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FullBodyComponent]
+      imports: [FullBodyBtnComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FullBodyComponent);
+    fixture = TestBed.createComponent(FullBodyBtnComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,13 +1,25 @@
+// HealthyCategoryResponse
+export interface HealthyCategoryResponse {
+  categories: HealthyCategory[];
+}
 export interface HealthyCategory {
   idCategory: string;
   strCategory: string;
   strCategoryThumb: string;
   strCategoryDescription: string;
 }
+// HealthyListResponse
+export interface HealthyListResponse {
+  meals: HealthyList[];
+}
 export interface HealthyList {
   strMeal: string;
   strMealThumb: string;
   idMeal: string;
+}
+// MealsResponse
+export interface MealsResponse {
+  meals: Meals[];
 }
 export interface Meals {
   idMeal: string;

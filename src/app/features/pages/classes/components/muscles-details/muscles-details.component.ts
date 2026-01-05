@@ -3,24 +3,32 @@ import { ActivatedRoute } from '@angular/router';
 import { CarouselModule } from 'primeng/carousel';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { chunkArray } from '../../../../../shared/services/chunk.util';
-import { AllMuscles, Exercise } from '../../interfaces/classes';
+import {
+  AllMuscles,
+  Difficultylevel,
+  Exercise,
+} from '../../interfaces/classes';
 import { MusclesService } from './services/muscles.service';
 import { HealthyList } from '../../../healthy/interfaces/healthy';
 import { HealthyService } from '../../../healthy/services/healthy.service';
-import { CategoryComponent } from "../../../healthy/components/category/category.component";
-import { ButtonCategoryComponent } from "../../../../../shared/components/button-category/button-category.component";
+import { CategoryComponent } from '../../../healthy/components/category/category.component';
+import { ButtonCategoryComponent } from '../../../../../shared/components/button-category/button-category.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-muscles-details',
-  imports: [CarouselModule, CategoryComponent, 
-    ButtonCategoryComponent, TranslateModule],
+  imports: [
+    CarouselModule,
+    CategoryComponent,
+    ButtonCategoryComponent,
+    TranslateModule,
+  ],
   templateUrl: './muscles-details.component.html',
   styleUrl: './muscles-details.component.scss',
 })
 export class MusclesDetailsComponent {
   responsiveOptions: any[] | undefined;
-  musclesList: AllMuscles[] = [];
+  musclesList: Difficultylevel[] = [];
   exercisesList: Exercise[] = [];
   selectExercise!: Exercise;
   musclesId: string = '';

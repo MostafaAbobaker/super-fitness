@@ -23,6 +23,7 @@ export class NavbarComponent implements AfterViewInit {
 
   ngOnInit(): void {
     this.lang = this._languageService.language();
+    
     this.iconTheme = this._themeService.theme();
   }
 

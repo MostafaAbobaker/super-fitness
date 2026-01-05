@@ -6,8 +6,8 @@ import { MusclesComponent } from './components/muscles/muscles.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonCategoryComponent } from '../../../shared/components/button-category/button-category.component';
-import { FullBodyComponent } from "../../../shared/components/full-body/full-body.component";
-import { ClassesHeaderComponent } from "../../../shared/components/classes-header/classes-header.component";
+import { ClassesHeaderComponent } from '../../../shared/components/classes-header/classes-header.component';
+import { FullBodyBtnComponent } from '../../../shared/components/full-body-btn/full-body-btn.component';
 
 @Component({
   selector: 'app-classes',
@@ -15,16 +15,15 @@ import { ClassesHeaderComponent } from "../../../shared/components/classes-heade
     CarouselModule,
     MusclesComponent,
     ButtonCategoryComponent,
-    FullBodyComponent,
-    ClassesHeaderComponent
-],
+    ClassesHeaderComponent,
+    FullBodyBtnComponent,
+  ],
   templateUrl: './classes.component.html',
   styleUrl: './classes.component.scss',
 })
 export class ClassesComponent implements OnInit {
   musclesList: AllMuscles[] = [];
   musclesGroup: Muscles[][] = [] as Muscles[][];
-  musclesBox: Muscles[][] = [];
 
   private readonly classesService = inject(ClassesService);
 
@@ -38,7 +37,6 @@ export class ClassesComponent implements OnInit {
     this.classesService.getAllMuscles().subscribe({
       next: (res) => {
         this.musclesList = res.musclesGroup;
-        console.log('all muscles', this.musclesList);
       },
     });
   }
@@ -58,7 +56,6 @@ export class ClassesComponent implements OnInit {
       next: (res) => {
         // this.musclesGroup = res.muscles;
         this.musclesGroup = chunkArray(res.muscles, 6);
-        this.musclesBox = chunkArray(res.meals.slice(0, 6), 3);
       },
     });
   }

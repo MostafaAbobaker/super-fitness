@@ -3,6 +3,7 @@ import { LanguageService } from '../../../shared/services/language.service';
 import { ThemeService } from '../../../shared/services/theme.service';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { AccountService } from './services/account.service';
 
 @Component({
   selector: 'app-acc',
@@ -15,6 +16,7 @@ export class ACCComponent implements OnInit {
   lang: string = 'en';
 
   constructor(
+    private accountService: AccountService,
     private _languageService: LanguageService,
     private _themeService: ThemeService,
     private _route: Router
@@ -36,7 +38,12 @@ export class ACCComponent implements OnInit {
   }
 
   logout() {
-    localStorage.clear();
-    this._route.navigate(['/login']);
+    this.accountService.logout().subscribe({
+      next: (res) => {
+        
+        localStorage.clear();
+        this._route.navigate(['/login']);
+      },
+    });
   }
 }

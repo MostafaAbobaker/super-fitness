@@ -76,8 +76,6 @@ export class MealsDetailsComponent {
       next: (res) => {
         this.mealsList = res.meals;
         this.selectMeal = this.mealsList[0];
-        console.log(this.mealsList);
-        console.log(this.selectMeal);
       },
     });
   }

@@ -29,8 +29,16 @@
           }
           <div class="w-full absolute bottom-0 left-0 p-2 bg-[#24242499]">
             <div class="mb-4 font-medium">{{ item.name }}</div>
-            <a class="text-(--primary-color)">
-              Explore <i class="fa-solid fa-circle-arrow-right"></i>
+            <a
+              [routerLink]="['/musclesDetails', item._id]"
+              class="text-(--primary-color)"
+            >
+              {{'classes.explore' | translate }} 
+              @if(lang == 'en'){
+                <i class="fa-solid fa-circle-arrow-right"></i>
+              }@else {
+                <i class="fa-solid fa-circle-arrow-left"></i>
+              }
             </a>
           </div>
         </div>

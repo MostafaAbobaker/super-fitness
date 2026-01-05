@@ -1,13 +1,41 @@
+// AllMusclesResponse
+export interface AllMusclesResponse {
+  message: string;
+  musclesGroup: AllMuscles[];
+}
 export interface AllMuscles {
   _id: string;
   name: string;
 }
+// MusclesResponse
+export interface MusclesResponse {
+  message: string;
+  totalMuscles: number;
+  muscles: Muscles[];
+}
 export interface Muscles {
   _id: string;
   name: string;
-  image: string;
+  image: null | string;
 }
-
+// DifficultylevelResponse
+export interface DifficultylevelResponse {
+  message: string;
+  totalLevels: number;
+  difficulty_levels: Difficultylevel[];
+}
+export interface Difficultylevel {
+  id: string;
+  name: string;
+}
+// ExerciseResponse
+export interface ExerciseResponse {
+  message: string;
+  totalExercises: number;
+  totalPages: number;
+  currentPage: number;
+  exercises: Exercise[];
+}
 export interface Exercise {
   _id: string;
   exercise: string;
