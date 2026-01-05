@@ -1,23 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 @use "tailwindcss";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400..800&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400..800&display=swap");
 
 :root {
-  --primary-color: #FF4100;
+  --primary-color: #ff4100;
   --secondary-color: #242424;
 }
 
 body {
-    font-family: "Baloo Thambi 2", system-ui;
-    background-color: #fff;
+  font-family: "Baloo Thambi 2", system-ui;
+  background-color: #fff;
 }
 [data-theme="dark"] {
-    body {
+  body {
     background-color: var(--secondary-color);
     color: #fff;
   }
 }
 
+// Meals Style
+.nutrition-badge {
+  @apply w-20 h-20 rounded-full border border-orange-500 
+           flex flex-col items-center justify-center
+           text-center bg-black/40;
+}
 
+.badge-value {
+  @apply text-lg font-bold;
+}
+
+.badge-label {
+  @apply text-xs text-orange-400;
+}
+
+// p-carousel
+.p-carousel-indicator-active .p-carousel-indicator-button {
+  background-color: var(--primary-color) !important;
+}
+// acc
+.card {
+  @apply border-1 border-gray-700 backdrop-blur-md rounded-2xl h-36 flex items-center justify-center text-center font-medium shadow-sm hover:shadow-md transition cursor-pointer;
+}
+// bg-imge
+.classes-home{
+    background-image: url('./assets/images/classes/classes-home.jpg');
+    background-size: cover;
+}

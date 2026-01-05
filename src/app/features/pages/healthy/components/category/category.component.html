@@ -1,0 +1,45 @@
+<p-carousel
+  [value]="mealsGroup"
+  [numVisible]="1"
+  [numScroll]="1"
+  [circular]="true"
+  [autoplayInterval]="3000"
+  styleClass="custom-carousel"
+>
+  <ng-template pTemplate="item" let-slide>
+    <div class="grid grid-cols-3 gap-6">
+      @for (item of slide; track $index) {
+      <a
+        [routerLink]="['/mealsDetails', item.idMeal]"
+        class="rounded-2xl shadow-lg cursor-pointer"
+      >
+        <div class="relative">
+          @if(item.strMealThumb){
+          <img
+            [src]="item.strMealThumb"
+            [alt]="item.strMeal"
+            class="w-full h-[300px] object-fit rounded-t-2xl"
+          />
+          }@else{
+          <img
+            src="../../../../../../assets/images/classes/Healthy.png"
+            alt="man"
+            class="w-full h-[300px] object-fit rounded-2xl"
+          />
+          }
+          <div class="w-full absolute bottom-0 left-0 p-2 bg-[#24242499]">
+            <div class="mb-4 font-medium">{{ item.strMeal }}</div>
+            <a
+              [routerLink]="['/mealsDetails', item.idMeal]"
+              class="text-(--primary-color)"
+            >
+              {{ "classes.explore" | translate }}
+              <i class="fa-solid fa-circle-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </a>
+      }
+    </div>
+  </ng-template>
+</p-carousel>

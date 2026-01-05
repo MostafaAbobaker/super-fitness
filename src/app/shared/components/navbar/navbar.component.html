@@ -3,66 +3,214 @@
   <div class="container mx-auto">
     <div class="flex justify-between items-center relative">
       <div class="navbar-brand">
-        <a><img ngSrc="../../../../assets/images/logo.png" alt="" class="w-[90px]" height="3000" width="3000"></a>
+        <a
+          ><img
+            ngSrc="../../../../assets/images/logo.png"
+            alt=""
+            class="w-[90px]"
+            height="3000"
+            width="3000"
+        /></a>
       </div>
 
       <!-- Normal Links -->
       <ul class="navbar-nav flex hidden lg:flex">
-        <li><a class="p-4 cursor-pointer font-bold text-black dark:text-white hover:text-(--primary-color)" routerLink="home" routerLinkActive="active-like">{{"navbar.home"| translate}}</a></li>
-        <li><a class="p-4 cursor-pointer font-bold text-black dark:text-white hover:text-(--primary-color)" routerLink="about" routerLinkActive="active-like">{{"navbar.about"| translate}}</a></li>
-        <li><a class="p-4 cursor-pointer font-bold text-black dark:text-white hover:text-(--primary-color)" routerLink="services" routerLinkActive="active-like">{{"navbar.services"| translate}}</a></li>
-        <li><a class="p-4 cursor-pointer font-bold text-black dark:text-white hover:text-(--primary-color)" routerLink="contact" routerLinkActive="active-like">{{"navbar.contact"| translate}}</a></li>
+        <li>
+          <a
+            class="p-4 cursor-pointer font-bold text-black dark:text-white hover:text-(--primary-color)"
+            routerLink="home"
+            routerLinkActive="active-like"
+            >{{ "navbar.home" | translate }}</a
+          >
+        </li>
+        <li>
+          <a
+            class="p-4 cursor-pointer font-bold text-black dark:text-white hover:text-(--primary-color)"
+            routerLink="about"
+            routerLinkActive="active-like"
+            >{{ "navbar.about" | translate }}</a
+          >
+        </li>
+         <li>
+                <a
+                  routerLink="classes"
+                  class="p-4 cursor-pointer text-primary font-bold"
+                  >{{ "navbar.classes" | translate }}</a
+                >
+              </li>
+              <li>
+                <a
+                  routerLink="healthy"
+                  class="p-4 cursor-pointer text-primary font-bold"
+                  >{{ "navbar.healthy" | translate }}
+                </a>
+              </li>
+        <li>
+          <a
+            class="p-4 cursor-pointer font-bold text-black dark:text-white hover:text-(--primary-color)"
+            routerLink="services"
+            routerLinkActive="active-like"
+            >{{ "navbar.services" | translate }}</a
+          >
+        </li>
+        <li>
+          <a
+            class="p-4 cursor-pointer font-bold text-black dark:text-white hover:text-(--primary-color)"
+            routerLink="contact"
+            routerLinkActive="active-like"
+            >{{ "navbar.contact" | translate }}</a
+          >
+        </li>
       </ul>
 
       <ul class="navbar-action flex items-center gap-2">
         <li class="nav-item theme-icon">
-          <button class="dark py-2 cursor-pointer px-2" *ngIf="iconTheme == 'light'" (click)="toggleTheme()">
+          <button
+            class="dark py-2 cursor-pointer px-2"
+            *ngIf="iconTheme == 'light'"
+            (click)="toggleTheme()"
+          >
             <i class="fa-solid fa-moon text-black dark:text-white"></i>
           </button>
-          <button class="light py-4 cursor-pointer px-2" *ngIf="iconTheme == 'dark'" (click)="toggleTheme()">
+          <button
+            class="light py-4 cursor-pointer px-2"
+            *ngIf="iconTheme == 'dark'"
+            (click)="toggleTheme()"
+          >
             <i class="fa-solid fa-sun text-black dark:text-white"></i>
           </button>
         </li>
         <!-- Language selection should be only in User Account Page -->
-          <li class="nav-item language-icon">
-            @if(lang == 'en') {
-              <button class="rtl py-4 cursor-pointer px-2 flex items-center transition" (click)="toggleDirection('ar')">
-                <img ngSrc="../../../../assets/images/egypt.svg" alt="" class="w-[20px] h-[20px] me-2 " height="16" width="16">
-                <span class="font-bold text-black dark:text-[#fff]">عربي</span>
-              </button>
-            } @else {
-              <button class="ltr py-4 cursor-pointer px-2 flex items-center transition" (click)="toggleDirection('en')">
-                <img ngSrc="../../../../assets/images/united-kingdom.svg" alt="" class="w-[20px] h-[20px ] me-2" height="16" width="16"> <span class="font-bold text-black dark:text-[#fff]">EN</span>
-              </button>
-            }
-          </li>
-        <li class="nav-item" >
-          <a routerLink="login" class="btn bg-(--primary-color) text-white p-2 px-4 rounded-[20px] cursor-pointer transition">Login</a>
+        <li class="nav-item language-icon">
+          @if(lang == 'en') {
+          <button
+            class="rtl py-4 cursor-pointer px-2 flex items-center transition"
+            (click)="toggleDirection('ar')"
+          >
+            <img
+              ngSrc="../../../../assets/images/egypt.svg"
+              alt=""
+              class="w-[20px] h-[20px] me-2"
+              height="16"
+              width="16"
+            />
+            <span class="font-bold text-black dark:text-[#fff]">عربي</span>
+          </button>
+          } @else {
+          <button
+            class="ltr py-4 cursor-pointer px-2 flex items-center transition"
+            (click)="toggleDirection('en')"
+          >
+            <img
+              ngSrc="../../../../assets/images/united-kingdom.svg"
+              alt=""
+              class="w-[20px] h-[20px ] me-2"
+              height="16"
+              width="16"
+            />
+            <span class="font-bold text-black dark:text-[#fff]">EN</span>
+          </button>
+          }
         </li>
-        <li class="nav-item" >
-          <a routerLink="signIn" class="btn text-(--primary-color) border border-(--primary-color) hover:text-[#fff] hover:bg-(--primary-color) p-2 px-4 rounded-[20px] cursor-pointer transition">Sign up</a>
+        <li class="nav-item">
+          <a
+            routerLink="login"
+            class="btn bg-(--primary-color) text-white p-2 px-4 rounded-[20px] cursor-pointer transition"
+            >Login</a
+          >
         </li>
-        <li class="nav-item" >
-          <button class="btn btn-primary w-[40px] h-[40px] grid place-items-center cursor-pointer bg-(--primary-color) text-white rounded-full transition"><i class="fa-regular fa-user"></i></button>
+        <li class="nav-item">
+          <a
+            routerLink="signIn"
+            class="btn text-(--primary-color) border border-(--primary-color) hover:text-[#fff] hover:bg-(--primary-color) p-2 px-4 rounded-[20px] cursor-pointer transition"
+            >Sign up</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            routerLink="/account"
+            class="btn btn-primary w-[40px] h-[40px] grid place-items-center cursor-pointer bg-(--primary-color) text-white rounded-full transition"
+          >
+            <i class="fa-regular fa-user"></i>
+          </a>
         </li>
 
         <!-- Menu Button-->
         <li class="nav-item">
-          <button (click)="isMenuOpen()" class="block lg:hidden btn btn-primary w-[40px] h-[40px] grid place-items-center cursor-pointer bg-(--primary-color) text-white rounded-full transition">
-            <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 1H17M4 7H17M7 13H17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <button
+            (click)="isMenuOpen()"
+            class="block lg:hidden btn btn-primary w-[40px] h-[40px] grid place-items-center cursor-pointer bg-(--primary-color) text-white rounded-full transition"
+          >
+            <svg
+              width="18"
+              height="14"
+              viewBox="0 0 18 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1H17M4 7H17M7 13H17"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </button>
 
           @if (isOpen) {
-            <div class="w-[300px] bg-[#F3F3F4] shadow-2xl dark:bg-(--secondary-color) absolute top-20 right-0 z-[9999] p-4 rounded-xl ">
-              <ul class="flex flex-col gap-3">
-                <li><a class="p-2 font-bold text-black dark:text-white hover:text-(--primary-color)" routerLink="home" routerLinkActive="active-like">{{"navbar.home"| translate}}</a></li>
-                <li><a class="p-2 font-bold text-black dark:text-white hover:text-(--primary-color)" routerLink="about" routerLinkActive="active-like">{{"navbar.about"| translate}}</a></li>
-                <li><a class="p-2 font-bold text-black dark:text-white hover:text-(--primary-color)" routerLink="services" routerLinkActive="active-like">{{"navbar.services"| translate}}</a></li>
-                <li><a class="p-2 font-bold text-black dark:text-white hover:text-(--primary-color)" routerLink="contact" routerLinkActive="active-like">{{"navbar.contact"| translate}}</a></li>
-              </ul>
-            </div>
+          <div
+            class="w-[300px] bg-[#F3F3F4] shadow-2xl dark:bg-(--secondary-color) absolute top-20 right-0 z-[9999] p-4 rounded-xl"
+          >
+            <ul class="flex flex-col gap-3">
+              <li>
+                <a
+                  class="p-2 font-bold text-black dark:text-white hover:text-(--primary-color)"
+                  routerLink="home"
+                  routerLinkActive="active-like"
+                  >{{ "navbar.home" | translate }}</a
+                >
+              </li>
+              <li>
+                <a
+                  class="p-2 font-bold text-black dark:text-white hover:text-(--primary-color)"
+                  routerLink="about"
+                  routerLinkActive="active-like"
+                  >{{ "navbar.about" | translate }}</a
+                >
+              </li>
+              <li>
+                <a
+                  routerLink="classes"
+                  class="p-4 cursor-pointer text-primary font-bold"
+                  >{{ "navbar.classes" | translate }}</a
+                >
+              </li>
+              <li>
+                <a
+                  routerLink="healthy"
+                  class="p-4 cursor-pointer text-primary font-bold"
+                  >{{ "navbar.healthy" | translate }}
+                </a>
+              </li>
+              <li>
+                <a
+                  class="p-2 font-bold text-black dark:text-white hover:text-(--primary-color)"
+                  routerLink="services"
+                  routerLinkActive="active-like"
+                  >{{ "navbar.services" | translate }}</a
+                >
+              </li>
+              <li>
+                <a
+                  class="p-2 font-bold text-black dark:text-white hover:text-(--primary-color)"
+                  routerLink="contact"
+                  routerLinkActive="active-like"
+                  >{{ "navbar.contact" | translate }}</a
+                >
+              </li>
+            </ul>
+          </div>
           }
         </li>
       </ul>
