@@ -2,11 +2,14 @@ import { Component, inject } from '@angular/core';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 import { InputOtpModule } from 'primeng/inputotp';
 import { NewPasswordComponent } from '../new-password/new-password.component';
 import { Subscription } from 'rxjs';
 import { ButtonSubmitComponent } from '../../../../shared/components/button-submit/button-submit.component';
+import { AuthAPIService } from 'authAPI';
+import { VerifyResetData } from '../../interfaces/VerifyResetData';
+import { AuthService } from '../../services/auth.service';
+import { ForgotPasswordData } from '../../interfaces/ForgotPasswordData';
 
 @Component({
   selector: 'app-otp',
@@ -19,6 +22,7 @@ import { ButtonSubmitComponent } from '../../../../shared/components/button-subm
 export class OtpComponent {
   otpComponent: boolean = true;
   private messageService = inject(MessageService);
+  private authApiService = inject(AuthAPIService);
   private authService = inject(AuthService);
   private fb = inject(FormBuilder);
   subscription:  Subscription | undefined;
@@ -31,7 +35,7 @@ export class OtpComponent {
   submit() {
     if (this.form.valid) {
       console.log(this.form.value);
-      this.subscription= this.authService.VerifyReset(this.form.value ).subscribe({
+      this.subscription= this.authApiService.verifyReset(this.form.value as VerifyResetData).subscribe({
         next: (res) => {
           console.log(res);
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'OTP verified successfully' });
@@ -48,7 +52,7 @@ export class OtpComponent {
     let email:string;
     email = this.authService.email();
      
-    this.subscriptionEmail= this.authService.forgetPassword(email).subscribe({
+    this.subscriptionEmail= this.authApiService.forgotPassword({email}).subscribe({
       next: (res) => {
         console.log(res);
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'OTP resent successfully' });

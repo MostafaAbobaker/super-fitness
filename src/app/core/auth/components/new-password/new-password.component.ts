@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ErrorMessageComponent } from '../../../../shared/components/error-message/error-message.component';
 import { ButtonSubmitComponent } from '../../../../shared/components/button-submit/button-submit.component';
+import { AuthAPIService } from 'authAPI';
 
 @Component({
   selector: 'app-new-password',
@@ -18,53 +19,48 @@ import { ButtonSubmitComponent } from '../../../../shared/components/button-subm
 })
 export class NewPasswordComponent {
   private fb = inject(FormBuilder);
+  private authApi = inject(AuthAPIService);
   private auth = inject(AuthService);
   private messageService = inject(MessageService);
   private router = inject(Router);
-    subscription:  Subscription | undefined;
+  subscription:  Subscription | undefined;
   
-  form = this.fb.group({
-    password: ['', [Validators.required, Validators.minLength(6)]],
-    confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
-  }, { validators: (control: AbstractControl) => this.passwordMatchValidator(control) });
 
-  passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
-    const password = control.get('password');
-    const confirmPassword = control.get('confirmPassword');
-    
-    if (password == confirmPassword && password && confirmPassword) {
-      return null;
-    } else {
-      return { passwordMismatch: true };
-    }
-    
+
+
+form = this.fb.group({
+    email: [this.auth.email(), [Validators.required, Validators.email]],
+    newPassword: ['', [Validators.required, Validators.minLength(6)]],
+    confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+  }, { validators: this.passwordMatchValidator });
+
+
+
+passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('newPassword')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+    return password && confirmPassword && password === confirmPassword ? null : { passwordMismatch: true };
   }
 
-  submit() {
-    
-    
+ 
+submit() {
     if (this.form.valid) {
-      /* let formNewPassword = this.fb.group({
-        email: [this.auth.email(), [Validators.required, Validators.email]],
-        newPassword: [this.form.value.password, [Validators.required, Validators.minLength(6)]],
-      }) */
-      this.subscription= this.auth.newPassword(this.form.value).subscribe({
-        next: (res) => {
-          console.log(res);
-          
+      const { email, newPassword } = this.form.value;
+      this.subscription = this.authApi.resetPassword({ email, newPassword } as any ).subscribe({
+        next: () => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Password updated' });
           this.router.navigate(['/auth/login']);
         },
         error: (err) => {
-          console.log(err);
-          
           this.messageService.add({ severity: 'error', summary: 'Error', detail: err.error.message });
         }
-      })
+      });
     }
   }
 
-  get password() { return this.form.get('password'); }
+
+ 
+  get newPassword() { return this.form.get('newPassword'); }
   get confirmPassword() { return this.form.get('confirmPassword'); }
   onDestroy() {
     this.subscription?.unsubscribe();

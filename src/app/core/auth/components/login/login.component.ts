@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { finalize } from 'rxjs/operators';
+import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ErrorMessageComponent } from '../../../../shared/components/error-message/error-message.component';
 import { ButtonSubmitComponent } from '../../../../shared/components/button-submit/button-submit.component';
+import { AuthAPIService } from 'authAPI';
+import { SigninPayload } from '../../interfaces/signin-payload';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,8 @@ import { ButtonSubmitComponent } from '../../../../shared/components/button-subm
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
-  private auth = inject(AuthService);
+  private _authAPIService = inject(AuthAPIService);
+  private router = inject(Router);
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -34,17 +35,17 @@ export class LoginComponent {
     }
     this.serverError = '';
     this.submitting = true;
-    const { email, password } = this.form.value;
-    this.subscription= this.auth.signin({ email: email as string, password: password as string }).subscribe({
+    // const { email, password } = this.form.value;
+    this.subscription= this._authAPIService.signin(this.form.value as SigninPayload).subscribe({
         next: (res) => {  
-          const token = (res as any)?.token || (res as any)?.data?.token || '';
-          if (token) {
-            localStorage.setItem('fitness_token', token);
-          }
+          console.log(res);
+          
+          localStorage.setItem('fitness_token', res.token);
+          this.router.navigate(['./'])
         },
-        error: (err) => {
+        /* error: (err) => {
           this.serverError = err?.error?.message || 'Login failed';
-        },
+        }, */
       });
   }
 

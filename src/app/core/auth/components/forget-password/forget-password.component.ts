@@ -8,6 +8,8 @@ import { OtpComponent } from "../otp/otp.component";
 import { Subscription } from 'rxjs';
 import { ErrorMessageComponent } from '../../../../shared/components/error-message/error-message.component';
 import { ButtonSubmitComponent } from '../../../../shared/components/button-submit/button-submit.component';
+import { AuthAPIService } from 'authAPI';
+import { ForgotPasswordData } from '../../interfaces/ForgotPasswordData';
 @Component({
   selector: 'app-forget-password',
   imports: [ReactiveFormsModule, ToastModule, OtpComponent, ErrorMessageComponent, ButtonSubmitComponent],
@@ -17,6 +19,7 @@ import { ButtonSubmitComponent } from '../../../../shared/components/button-subm
 
 })
 export class ForgetPasswordComponent {
+  private authApiService = inject(AuthAPIService);
   private authService = inject(AuthService);
   private fb = inject(FormBuilder);
   private messageService = inject(MessageService);
@@ -33,7 +36,7 @@ export class ForgetPasswordComponent {
     if (this.form.valid) {
       console.log(this.form.value);
       let email = this.form.value.email as string;
-      this.subscription = this.authService.forgetPassword(email).subscribe({
+      this.subscription = this.authApiService.forgotPassword(this.form.value as ForgotPasswordData).subscribe({
         next: (res) => {
           console.log(res);
           this.authService.email.set(email);

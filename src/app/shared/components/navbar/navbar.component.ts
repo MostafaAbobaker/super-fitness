@@ -3,10 +3,11 @@ import { Component, HostListener, AfterViewInit, ElementRef, ViewChild } from '@
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
 import { TranslatePipe } from '@ngx-translate/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../../../core/auth/services/auth.service';
+import { AuthAPIService } from 'authAPI';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -20,10 +21,10 @@ export class NavbarComponent implements AfterViewInit {
 
   lang: string = 'en';
   isOpen: boolean = false;
-  isAuthenticated = localStorage.getItem('token') !== null;
+  isAuthenticated = localStorage.getItem('fitness_token') !== null;
   @ViewChild('navbar') navbarRef!: ElementRef<HTMLElement>;
 
-  constructor(private _languageService: LanguageService, private _themeService: ThemeService , private _authService: AuthService) {}
+  constructor(private _languageService: LanguageService, private _themeService: ThemeService , private _authService: AuthAPIService, private router: Router) {}
 
   ngOnInit(): void {
     this.lang = this._languageService.language();
@@ -89,11 +90,9 @@ export class NavbarComponent implements AfterViewInit {
     this._authService.logout().subscribe({
       next: (res) => {
         console.log(res);
-        localStorage.removeItem('token');
+        localStorage.removeItem('fitness_token');
+        this.router.navigate(['./auth/login']);
         this.isAuthenticated = false;
-      },
-      error: (err) => {
-        console.log(err);
       }
     })
   }

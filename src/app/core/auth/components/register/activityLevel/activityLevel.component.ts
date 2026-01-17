@@ -3,7 +3,8 @@ import {  FormsModule  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RegisterService } from '../../../services/register.service';
-import { AuthService } from '../../../services/auth.service';
+import { AuthAPIService } from 'authAPI';
+import { SignupPayload } from '../../../interfaces/signup-payload';
 
 @Component({
   selector: 'app-activityLevel',
@@ -16,7 +17,7 @@ export class ActivityLevelComponent {
     activityLevel: new FormControl('', Validators.required)
   }); */
 activityLevelSelected: string = '';
-constructor(private router: Router, private _registerService: RegisterService , private _authService: AuthService){
+constructor(private router: Router, private _registerService: RegisterService , private _authService: AuthAPIService){
 
 }
 
@@ -56,15 +57,15 @@ constructor(private router: Router, private _registerService: RegisterService , 
       password: this._registerService.password(),
       rePassword: this._registerService.rePassword(),
       gender: this._registerService.gender(),
-      height: this._registerService.height(),
-      weight: this._registerService.weight(),
-      age: this._registerService.age(),
+      height: +this._registerService.height(),
+      weight: +this._registerService.weight(),
+      age: +this._registerService.age(),
       goal: this._registerService.goal(),
       activityLevel: this._registerService.activityLevel(),
     }
     console.log(signupData);
     
-    this._authService.signup(signupData).subscribe({
+    this._authService.signupApi(signupData as SignupPayload).subscribe({
       next: (res) => {
        
 

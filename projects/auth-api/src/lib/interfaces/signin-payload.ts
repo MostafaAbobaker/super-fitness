@@ -1,3 +1,14 @@
+export interface SigninData {
+    email: string;
+    password: string;
+}
+
+export interface SigninRespEdit {
+    message: string,
+    token: string,
+    userName: string,
+}
+
 export interface SigninResponse {
   message: string,
   token: string,
@@ -15,10 +26,4 @@ export interface SigninResponse {
     photo: string,
     createdAt: string,
   }
-}
-
-export interface SignupRespEdit {
-    message: string,
-    token: string,
-    userName: string,
 }
