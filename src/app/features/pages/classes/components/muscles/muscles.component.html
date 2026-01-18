@@ -1,0 +1,49 @@
+<p-carousel
+  [value]="musclesGroup"
+  [numVisible]="1"
+  [numScroll]="1"
+  [circular]="true"
+  [autoplayInterval]="3000"
+  styleClass="custom-carousel"
+>
+  <ng-template pTemplate="item" let-slide>
+    <div class="grid grid-cols-3 gap-6">
+      @for (item of slide; track $index) {
+      <a
+        [routerLink]="['/musclesDetails', item._id]"
+        class="rounded-2xl shadow-lg cursor-pointer"
+      >
+        <div class="relative">
+          @if(item.image){
+          <img
+            [src]="item.image"
+            [alt]="item.name"
+            class="w-full h-[300px] object-fit rounded-t-2xl"
+          />
+          }@else{
+          <img
+            src="../../../../../../assets/images/man.png"
+            alt="man"
+            class="w-full h-[300px] object-fit rounded-2xl"
+          />
+          }
+          <div class="w-full absolute bottom-0 left-0 p-2 bg-[#24242499]">
+            <div class="mb-4 font-medium">{{ item.name }}</div>
+            <a
+              [routerLink]="['/musclesDetails', item._id]"
+              class="text-(--primary-color)"
+            >
+              {{'classes.explore' | translate }} 
+              @if(lang == 'en'){
+                <i class="fa-solid fa-circle-arrow-right"></i>
+              }@else {
+                <i class="fa-solid fa-circle-arrow-left"></i>
+              }
+            </a>
+          </div>
+        </div>
+      </a>
+      }
+    </div>
+  </ng-template>
+</p-carousel>

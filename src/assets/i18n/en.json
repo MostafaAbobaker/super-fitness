@@ -1,18 +1,20 @@
 {
-  "title":"Hello World",
-  "home":"Home",
+  "title": "Hello World",
+  "home": "Home",
 
   "navbar": {
     "home": "Home",
     "about": "About Us",
     "services": "Services",
-    "contact": "Contact"
+    "contact": "Contact",
+    "classes": "Classes",
+    "healthy": "Healthy"
   },
   "about": {
-    "title":"EMPOWERING YOU TO ACHIEVE",
-    "speTerm":"YOUR FITNESS",
-    "term":"GOALS",
-    "subTitle":"We believe fitness is more than just a workout—it's a lifestyle. With top-of- the-line facilities, certified trainers, and a supportive community, we're here to inspire and guide you every step of the way."
+    "title": "EMPOWERING YOU TO ACHIEVE",
+    "speTerm": "YOUR FITNESS",
+    "term": "GOALS",
+    "subTitle": "We believe fitness is more than just a workout—it's a lifestyle. With top-of- the-line facilities, certified trainers, and a supportive community, we're here to inspire and guide you every step of the way."
   },
   "services": {
     "titleA": "Personal Trainer",
@@ -27,7 +29,6 @@
     "titleD": "Healthy Nutritions",
     "descriptionD": "Fuel your fitness journey with customized meal plans for you.",
     "btn": ""
-
   },
   "bestWay": {
     "title": "Elevate fitness with the",
@@ -59,6 +60,40 @@
 
     "stat3Number": "20+",
     "stat3Text": "Year Of Experience"
+  },
+  "classes": {
+    "fitness": "fitness class",
+    "header": "Transform Your Body with Our Dynamic",
+    "upcoming": "Upcoming Workouts",
+    "video_not_available": "Video not available for this exercise",
+     "explore": "Explore"
+  },
+  "healthy": {
+    "healthy": "Healthy Nutritions",
+    "header": "Fuel your fitness journey with customized",
+    "meal": "meal plans",
+    "for_you": "for you",
+    "image_not_available": "Image not available for this meal",
+    "ingredients": "Ingredients",
+    "energy": "Energy",
+    "protein": "Protein",
+    "carbs": "Carbs",
+    "fat": "Fat"
+  },
+  "settings": {
+    "your_goal": "Your Goal",
+    "tap_to_change": "Tap to change",
+    "lose_weight": "Lose Weight",
+    "level": "Level",
+    "beginner": "Beginner",
+    "weight": "Weight",
+    "kg": "Kg",
+    "change_password": "Change Password",
+    "select_language": "Select Language",
+    "mood": "Mood",
+    "light": "Light",
+    "dark": "Dark",
+    "logout": "Logout"
   },
   "notFound": {
     "title": "Page Not",

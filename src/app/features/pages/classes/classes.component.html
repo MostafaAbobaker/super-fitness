@@ -1,1 +1,20 @@
-<p>classes works!</p>
+<section class="w-[90%] mx-auto pt-20">
+  <app-classes-header></app-classes-header>
+
+  <!-- classes -->
+  <ul class="flex flex-wrap justify-center gap-4 my-5">
+    <li>
+      <app-full-body-btn (click)="getMusclesRandom()"></app-full-body-btn>
+    </li>
+    @for (muscles of musclesList; track muscles._id) {
+    <li>
+      <app-button-category
+        [musclesList]="muscles"
+        (click)="getMusclesData(muscles._id)"
+      ></app-button-category>
+    </li>
+    }
+  </ul>
+
+  <app-muscles [musclesGroup]="musclesGroup"></app-muscles>
+</section>
