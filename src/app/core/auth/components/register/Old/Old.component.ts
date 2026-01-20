@@ -1,18 +1,20 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CarouselModule, OwlOptions, CarouselComponent } from 'ngx-owl-carousel-o';
 import { RegisterService } from '../../../services/register.service';
+import { QuestionsLayoutComponent } from '../../../../../shared/components/questions-layout/questions-layout.component';
 
 @Component({
   selector: 'app-Old',
-  imports: [CommonModule, ReactiveFormsModule,CarouselModule ],
+  imports: [CommonModule, ReactiveFormsModule,CarouselModule , QuestionsLayoutComponent],
   templateUrl: './Old.component.html',
   styleUrl: './Old.component.scss',
 
 })
 export class OldComponent {
+  @Output() onOldSelect = new EventEmitter<number>();
   private fb = new FormBuilder();
   form = this.fb.group({ age: [27, [Validators.required, Validators.min(12), Validators.max(100)]] });
 
@@ -90,10 +92,10 @@ export class OldComponent {
     if (this.form.invalid) return;
     console.log(this.form.value);
 
-
+    this.onOldSelect.emit();
     this._registerService.age.set(this.age.toString());
     console.log(this._registerService.age());
-    this.router.navigate(['/auth/register/question-three']);
+    // this.router.navigate(['/auth/register/question-three']);
   }
  
 }

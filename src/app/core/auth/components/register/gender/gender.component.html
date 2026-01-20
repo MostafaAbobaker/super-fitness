@@ -1,11 +1,11 @@
 <section class="min-h-screen grid place-items-center ">
   <div class="w-full lg:max-w-[600px]  md:max-w-[500px] px-6 md:px-12">
-    <div class="text-center mb-6">
+    <!-- <div class="text-center mb-6">
       <div class="count-question text-gray-300 text-3xl  mb-2 font-semibold"><span>1/6</span></div>
       <h1 class="text-2xl  md:text-4xl font-extrabold text-white text-nowrap text-center">TELL US ABOUT YOURSELF!</h1>
       <p class="text-gray-300 mt-2">We Need To Know Your Gender</p>
-    </div>
-
+    </div> -->
+    <app-questions-layout [value]="20" [Title]="'TELL US ABOUT YOURSELF!'" [Subtitle]="'We Need To Know Your Gender'"></app-questions-layout>
     <div class="flex flex-col items-center gap-6">
       <button type="button" class="option" [class.active]="form.value.gender==='male'" (click)="select('male')">
         <span class="icon"><i class="fa-solid fa-mars fa-fw"></i></span>

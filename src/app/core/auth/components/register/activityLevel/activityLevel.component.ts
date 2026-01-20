@@ -5,10 +5,11 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { RegisterService } from '../../../services/register.service';
 import { AuthAPIService } from 'authAPI';
 import { SignupPayload } from '../../../interfaces/signup-payload';
+import { QuestionsLayoutComponent } from "../../../../../shared/components/questions-layout/questions-layout.component";
 
 @Component({
   selector: 'app-activityLevel',
-  imports: [FormsModule,RadioButtonModule],
+  imports: [FormsModule, RadioButtonModule, QuestionsLayoutComponent ],
   templateUrl: './activityLevel.component.html',
   styleUrl: './activityLevel.component.scss'
 })
@@ -68,7 +69,8 @@ constructor(private router: Router, private _registerService: RegisterService , 
     this._authService.signupApi(signupData as SignupPayload).subscribe({
       next: (res) => {
        
-
+        console.log(res);
+        
         this.router.navigate(['/auth/login']);
       },
       error: (err) => {
@@ -76,7 +78,7 @@ constructor(private router: Router, private _registerService: RegisterService , 
       }
     })
    
-    this.router.navigate(['/auth/register/question-six']);
+    // this.router.navigate(['/auth/register/question-six']);
   }
  
 

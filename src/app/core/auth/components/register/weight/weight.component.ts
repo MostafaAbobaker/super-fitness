@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, EventEmitter, inject, Output, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CarouselComponent, CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RegisterService } from '../../../services/register.service';
+import { QuestionsLayoutComponent } from '../../../../../shared/components/questions-layout/questions-layout.component';
 
 @Component({
   selector: 'app-weight',
-  imports: [CommonModule, ReactiveFormsModule,CarouselModule],
+  imports: [CommonModule, ReactiveFormsModule,CarouselModule, QuestionsLayoutComponent],
   templateUrl: './weight.component.html',
   styleUrl: './weight.component.scss'
 })
 export class WeightComponent {
+  @Output() onWeightSelect = new EventEmitter<number>();
  private fb = inject(FormBuilder);
 
   form = this.fb.group({ weight: [90, [Validators.required, Validators.min(12), Validators.max(100)]] });
@@ -89,7 +91,8 @@ nextStep() {
     if (this.form.invalid) return;
     this._registerService.weight.set(this.weight.toString());
     console.log(this._registerService.weight());
-    this.router.navigate(['/auth/register/question-four']);
+    // this.router.navigate(['/auth/register/question-four']);
+    this.onWeightSelect.emit();
   }
   
 }

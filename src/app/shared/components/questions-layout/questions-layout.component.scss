@@ -1,0 +1,50 @@
+.count-question {
+  font-size: 24px;
+  font-weight: 600;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  margin: 0 auto 8px;
+  // border: 1px solid rgba(255,255,255,0.5);
+  position: relative;
+      isolation: isolate;
+  span {
+  background-color: #393939;
+    width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    height: 110%;
+    border-radius: 9999px;
+    /* https://grabient.com/HQNgTAHANMAsEFYZjLKBaADMAzARmi2DAE4QZYTDtY8wNswQSY8B2cvXJh4BE+ui6ZMOIA?style=angularSwatches&steps=15&angle=210 */
+    z-index: -1;
+                                            /* https://grabient.com/HQJgjAnANMEBzWAVgMwppA7DTKAsMEYAbBktqGBSHHFCMsQSskgAxR7CZhxA?style=angularSwatches&steps=13&angle=45 */
+
+    /* https://grabient.com/HQVhCYBpQDgTmgNgMwAZoQOzQCxuspgsODNsAIwiLQWZTKjjojCJWQXA7iJA?style=angularGradient&steps=5&angle=90 */
+
+background: conic-gradient(from -90deg, var(--primary-color) 0.000deg,
+                                        var(--primary-color) 59.000deg,
+                                         #000 60deg,
+                                        #000 120deg,
+                                        #000 180deg,
+                                        #000 240deg,
+                                        #000 300deg,
+                                        #000 360deg)
+  }
+} 
+
+.questions-layout .p-knob-text {
+    font-weight: 700;
+    font-size: 24px;
+}

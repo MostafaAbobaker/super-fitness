@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Adaptor } from '../interfaces/adaptor';
-import { SigninData, SigninRespEdit, SigninResponse } from '../interfaces/signin-payload';
-import { ChangePasswordResponse } from '../interfaces/changePassword';
-import { ForgotPassworResponse } from '../interfaces/forgotPassword';
+import {  SigninRespEdit, SigninResponse } from '../interfaces/signin-payload';
+import { ForgotPasswordResponse } from '../interfaces/forgotPassword';
 import { SignupRespEdit, SignupResponse } from '../interfaces/signup';
 import { VerifyResetResponse } from '../interfaces/verifyReset';
 import { ResetPasswordResponse } from '../interfaces/resetPassword';
 import { LogoutResponse } from '../interfaces/logout';
 import { AdapterAbstract } from './adapter-abstract';
+import { ErrorData, ErrorResponse } from '../interfaces/Error';
 
 @Injectable({
   providedIn: 'root'
@@ -15,21 +14,29 @@ import { AdapterAbstract } from './adapter-abstract';
 export class AuthAPIAdaptorService implements AdapterAbstract  {
 
   constructor() { }
+
+  adaptError(data:ErrorData):ErrorResponse {
+    return {
+      message: data.message,
+      error: data.error.error,
+      status:data.status
+    }
+  }
   adaptSignin(data:SigninResponse): SigninRespEdit {
     return {
-      message: data.message, 
+      message: data.message,
       token: data.token,
-      userName: data.user.firstName 
+      userName: data.user.firstName
     }
   }
   adaptSignup(data:SignupResponse): SignupRespEdit {
     return {
-      message: data.message, 
+      message: data.message,
       token: data.token,
-      userName: data.user.firstName 
+      userName: data.user.firstName
     }
   }
-  adaptForgotPassword(data: ForgotPassworResponse):ForgotPassworResponse {
+  adaptForgotPassword(data: ForgotPasswordResponse):ForgotPasswordResponse {
     return {
       message: data.message,
       nfo: data.nfo
@@ -46,12 +53,7 @@ export class AuthAPIAdaptorService implements AdapterAbstract  {
       token: data.token
     };
   }
-  adaptChangePassword(data:ChangePasswordResponse): ChangePasswordResponse {
-    return {
-      message: data.message,
-      token: data.token 
-    }
-  }
+
   adaptLogout(data:LogoutResponse) :LogoutResponse{
     return {
       message: data.message,

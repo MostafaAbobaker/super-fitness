@@ -7,6 +7,7 @@ import { ErrorMessageComponent } from '../../../../shared/components/error-messa
 import { ButtonSubmitComponent } from '../../../../shared/components/button-submit/button-submit.component';
 import { AuthAPIService } from 'authAPI';
 import { SigninPayload } from '../../interfaces/signin-payload';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ import { SigninPayload } from '../../interfaces/signin-payload';
 export class LoginComponent {
   private fb = inject(FormBuilder);
   private _authAPIService = inject(AuthAPIService);
+  private _auth = inject(AuthService);
   private router = inject(Router);
 
   form = this.fb.group({
@@ -37,15 +39,19 @@ export class LoginComponent {
     this.submitting = true;
     // const { email, password } = this.form.value;
     this.subscription= this._authAPIService.signin(this.form.value as SigninPayload).subscribe({
-        next: (res) => {  
+        next: (res) => {
           console.log(res);
-          
+
           localStorage.setItem('fitness_token', res.token);
+          this._auth.isAuthenticated.set(true);
           this.router.navigate(['./'])
         },
-        /* error: (err) => {
-          this.serverError = err?.error?.message || 'Login failed';
-        }, */
+        error: (err) => {
+          console.log(err.error);
+
+
+          this.serverError = err.error.error || 'Login failed';
+        },
       });
   }
 

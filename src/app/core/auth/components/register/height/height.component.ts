@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component,  inject,  ViewChild } from '@angular/core';
+import { Component,  EventEmitter,  inject,  Output,  ViewChild } from '@angular/core';
 import { FormBuilder,  ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CarouselComponent, CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RegisterService } from '../../../services/register.service';
+import { QuestionsLayoutComponent } from '../../../../../shared/components/questions-layout/questions-layout.component';
 
 @Component({
   selector: 'app-height',
-  imports: [CommonModule, ReactiveFormsModule,CarouselModule],
+  imports: [CommonModule, ReactiveFormsModule,CarouselModule , QuestionsLayoutComponent],
   templateUrl: './height.component.html',
   styleUrl: './height.component.scss'
 })
 export class HeightComponent {
+  @Output() onHeightSelect = new EventEmitter<number>();
   private fb = inject(FormBuilder);
 
   form = this.fb.group({ height: [167, [Validators.required, Validators.min(60), Validators.max(250)]] });
@@ -89,8 +91,9 @@ nextStep() {
     
     if (this.form.invalid) return;
     this._registerService.height.set(this.height.toString()); 
+    this.onHeightSelect.emit();
     console.log(this._registerService.height());
-    this.router.navigate(['/auth/register/question-five']);
-  }
+    // this.router.navigate(['/auth/register/question-five']);
+  } 
   
 }

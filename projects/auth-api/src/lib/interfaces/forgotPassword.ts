@@ -3,7 +3,7 @@ export interface ForgotPasswordData {
     email: string;
 }
 
-export interface ForgotPassworResponse {
+export interface ForgotPasswordResponse {
     message: string
     nfo: string
 }

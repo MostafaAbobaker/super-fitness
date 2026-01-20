@@ -1,4 +1,4 @@
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import { CommonModule, NgOptimizedImage} from '@angular/common';
 import { Component, HostListener, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
@@ -6,12 +6,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { Router, RouterModule } from '@angular/router';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
-import { AuthService } from '../../../core/auth/services/auth.service';
 import { AuthAPIService } from 'authAPI';
+import { AuthService } from '../../../core/auth/services/auth.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [ TranslatePipe, RouterModule, NgOptimizedImage,MenuModule],
+  imports: [ CommonModule,TranslatePipe, RouterModule, NgOptimizedImage,MenuModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
@@ -21,32 +21,17 @@ export class NavbarComponent implements AfterViewInit {
 
   lang: string = 'en';
   isOpen: boolean = false;
-  isAuthenticated = localStorage.getItem('fitness_token') !== null;
+  isAuthenticated :boolean = false;
   @ViewChild('navbar') navbarRef!: ElementRef<HTMLElement>;
 
-  constructor(private _languageService: LanguageService, private _themeService: ThemeService , private _authService: AuthAPIService, private router: Router) {}
+  constructor(private _languageService: LanguageService, private _themeService: ThemeService ,private _auth: AuthService, private _authService: AuthAPIService, private router: Router) {}
 
   ngOnInit(): void {
     this.lang = this._languageService.language();
     
+    this.isAuthenticated = this._auth.isAuthenticated();
     this.iconTheme = this._themeService.theme();
-    this.items = [
-            {
-                items: [
-                    {
-                        label: 'Refresh',
-                        icon: 'fa-solid fa-arrows-rotate'
-                    },
-                    {
-                        label: 'Logout',
-                        icon: 'fa-solid fa-right-from-bracket',
-                        command: () => {
-                            this.logOut();
-                        }
-                    }
-                ]
-            }
-        ];
+   
   }
 
   ngAfterViewInit(): void {
@@ -87,14 +72,5 @@ export class NavbarComponent implements AfterViewInit {
       nav.classList.add('bg-transparent', 'dark:bg-transparent');
     }
   }
-  logOut(){
-    this._authService.logout().subscribe({
-      next: (res) => {
-        console.log(res);
-        localStorage.removeItem('fitness_token');
-        this.router.navigate(['./auth/login']);
-        this.isAuthenticated = false;
-      }
-    })
-  }
+  
 }

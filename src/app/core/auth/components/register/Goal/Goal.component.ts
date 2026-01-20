@@ -1,17 +1,19 @@
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RegisterService } from '../../../services/register.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { QuestionsLayoutComponent } from "../../../../../shared/components/questions-layout/questions-layout.component";
 
 @Component({
   selector: 'app-Goal',
-  imports: [ CommonModule ,RadioButtonModule,FormsModule],
+  imports: [CommonModule, RadioButtonModule, FormsModule, QuestionsLayoutComponent],
   templateUrl: './Goal.component.html',
   styleUrl: './Goal.component.scss'
 })
 export class GoalComponent {
+  @Output() onGoalSelect = new EventEmitter<string>();
   goalSelected: string = '';
   name:string = '';
 
@@ -38,8 +40,8 @@ export class GoalComponent {
     this._registerService.goal.set(this.goalSelected || '');
 
    console.log(this._registerService.goal());
-   
-    this.router.navigate(['/auth/register/question-six']);
+    this.onGoalSelect.emit();
+    // this.router.navigate(['/auth/register/question-six']);
   }
   
 }
