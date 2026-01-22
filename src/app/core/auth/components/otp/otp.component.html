@@ -1,0 +1,36 @@
+@if(otpComponent){
+  <section class="login-page px-6 md:px-12 grid items-center justify-center min-h-screen ">
+    <div class="md:min-w-[500px]">
+        <div class="text-center mb-6">
+          <h1 class="text-4xl md:text-5xl font-extrabold text-white">Forget password </h1>
+        </div>
+  
+        <div class="glass-card p-8 rounded-[50px] border border-white/20">
+          <h3 class="text-white text-lg font-semibold mb-6">Enter Your Email</h3>
+  
+          <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+            
+                <p-inputotp formControlName="resetCode" class="mb-6 justify-center"  [length]="6">
+                    <ng-template #input let-token let-events="events">
+                        <input class="custom-otp-input" (input)="events.input($event)" (keydown)="events.keydown($event)" type="text" [attr.value]="token" [maxLength]="1" />
+                    </ng-template>
+                </p-inputotp>
+
+            
+  
+          
+  
+            
+                <app-button-submit [form]="form" buttonText="Confirm"></app-button-submit>
+            
+          </form>
+          <p class="text-center text-white/80 mb-2">didnt recieve verification code?</p>
+          <button class="text-[var(--primary-color)] font-medium m-auto block cursor-pointer" (click)="resendCode()">Resend Code?</button>
+        </div>
+        </div>
+  </section>
+
+} @else {
+      <app-new-password></app-new-password>
+}
+    <p-toast />

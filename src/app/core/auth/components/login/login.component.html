@@ -1,0 +1,61 @@
+<section class="grid items-center justify-center min-h-screen px-6 login-page md:px-12 ">
+  <div class="md:min-w-[500px]">
+      <div class="mb-6 text-center">
+        <p class="text-gray-300">Hey There</p>
+        <h1 class="text-4xl font-extrabold text-white md:text-5xl">WELCOME BACK</h1>
+      </div>
+
+      <div class="glass-card p-8 rounded-[50px] border border-white/20">
+        <h3 class="mb-6 text-lg font-semibold text-white">Login</h3>
+
+        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <div class="mb-4">
+            <div class="input-group">
+              <i class="fa-regular fa-envelope"></i>
+              <input id="email" type="email" formControlName="email" placeholder="Email">
+            </div>
+            @if(email?.touched && email?.invalid) {
+              <app-error-message errorMessage="Enter a valid email"></app-error-message>
+            }
+          </div>
+
+          <div class="mb-2">
+            <div class="input-group">
+              <i class="fa-solid fa-lock"></i>
+              <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password">
+              <button type="button" class="toggle" (click)="togglePassword()"><i class="fa-regular" [class]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i></button>
+            </div>
+            @if(password?.touched && password?.invalid) {
+              <app-error-message errorMessage="Password is required (min 6)"></app-error-message>
+            }
+          </div>
+
+          <div class="flex justify-end mb-6">
+            <a [routerLink]="'/auth/forget-password'" class="text-(--primary-color) hover:underline">Forget Password ?</a>
+          </div>
+          @if(serverError) {<p class="mb-3 text-center text-red-500 fs-5 fw-bold">{{serverError}}</p>}
+
+          <div class="flex items-center gap-4 mb-6 text-gray-300">
+            <span class="flex-1 h-px bg-white/10"></span>
+            <span>Or</span>
+            <span class="flex-1 h-px bg-white/10"></span>
+          </div>
+
+          <div class="flex items-center justify-center gap-4 mb-6">
+            <button type="button" class="social-btn"><i class="fa-brands fa-facebook-f"></i></button>
+            <button type="button" class="social-btn"><i class="fa-brands fa-google"></i></button>
+            <button type="button" class="social-btn"><i class="fa-brands fa-apple"></i></button>
+          </div>
+
+          <!-- <button type="submit" class="w-full btn-primary" [disabled]="form.invalid">Login</button> -->
+
+          <app-button-submit [type]="'submit'"  [className]="'w-full btn-primary'"  [disabled]="form.invalid"  [buttonText]="'Login'"></app-button-submit>
+
+          <div class="mt-4 text-center text-gray-300">
+            <span>Dont Have An Account Yet ? </span>
+            <a [routerLink]="'/auth/register'" class="text-(--primary-color) font-semibold hover:underline">Register</a>
+          </div>
+        </form>
+      </div>
+      </div>
+</section>

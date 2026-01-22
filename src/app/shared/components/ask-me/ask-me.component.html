@@ -1,7 +1,7 @@
 <section class="relative">
   <!-- btn -->
   <div class="w-40 fixed bottom-10 z-[9999] right-40 rtl:left-40 flex flex-col items-center transition-all duration-500" [ngClass]="{'bottom-165': isOpen}">
-    <button class="z-9 cursor-pointer" (click)="AskMe()">
+    <button class="cursor-pointer z-9" (click)="AskMe()">
       <img ngSrc="../../../../assets/images/AskMe/emo.png" alt="arrow" height="99" width="101"/>
     </button>
 
@@ -24,7 +24,7 @@
       </div>
 
       <!-- Body -->
-      <div #chatContainer class="pb-5 space-y-4 flex-1 overflow-y-auto space-y-4 px-4 py-4 bottom-0 scroll-smooth h-100">
+      <div #chatContainer class="bottom-0 flex-1 px-4 py-4 pb-5 space-y-4 overflow-y-auto scroll-smooth h-100">
 
         @for (msg of messages; track $index){
 
@@ -39,8 +39,8 @@
 
         @if (isLoading){
           <!-- Is Loading -->
-          <div class="flex gap-4 items-start">
-            <img ngSrc="/assets/images/AskMe/Ellipse7.png" class="rounded-full flex-shrink-0" height="56" width="56" alt="Ellipse">
+          <div class="flex items-start gap-4">
+            <img ngSrc="/assets/images/AskMe/Ellipse7.png" class="flex-shrink-0 rounded-full" height="56" width="56" alt="Ellipse">
             <div class="bg-[var(--secondary-color)]/70 p-4 rounded-3xl rounded-tl-none">
               <div class="flex gap-1">
                 <span class="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></span>
@@ -53,9 +53,9 @@
       </div>
 
       <!-- Footer -->
-      <div class="relative py-8 px-2">
+      <div class="relative px-2 py-8">
         <!-- Icon -->
-        <svg class="absolute left-5 top-1/2 -translate-y-1/2 pointer-events-none"
+        <svg class="absolute -translate-y-1/2 pointer-events-none left-5 top-1/2"
              width="21"
              height="21"
              viewBox="0 0 21 21"
@@ -75,13 +75,13 @@
           [disabled]="isLoading"
           (keyup.enter)="SendMessage()"
           placeholder="Ask Me Any Things"
-          class="w-full border border-white rounded-3xl h-10 pl-12 pr-24 text-white transition-all focus:outline-none">
+          class="w-full h-10 pl-12 pr-24 text-white transition-all border border-white rounded-3xl focus:outline-none">
 
         <!-- Send Button -->
         <button
           (click)="SendMessage()"
           [disabled]="!userInput.trim() || isLoading"
-          class="absolute cursor-pointer right-5 top-1/2 -translate-y-1/2 text-white rounded-lg p-2 hover:opacity-90 transition-opacity flex items-center justify-center">
+          class="absolute flex items-center justify-center p-2 text-white transition-opacity -translate-y-1/2 rounded-lg cursor-pointer right-5 top-1/2 hover:opacity-90">
           <svg
             width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>

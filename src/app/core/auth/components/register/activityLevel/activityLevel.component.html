@@ -1,0 +1,27 @@
+<section class="min-h-screen grid place-items-center">
+  <div class="w-full md:max-w-[600px] px-6 md:px-12">
+   <!--  <div class="text-center mb-8">
+      <div class="count-question text-gray-300 text-4xl mb-2 font-semibold"><span>6/6</span></div>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white">your regular physical activity level ?</h1>
+      <p class="text-gray-300 mt-2">this helps us create Your personalized plan </p>
+    </div> -->
+        <app-questions-layout [value]="100" [Title]="'Your regular physical activity level ?'" [Subtitle]="'This helps us create Your personalized plan'"></app-questions-layout>
+
+    <form class="flex flex-col gap-4" >
+        @for(activity of activityLevel; track i; let i =$index){
+        <div class="field-checkbox">
+            <p-radiobutton [inputId]="activity.key" name="activityLevel" [value]="activity.key" [(ngModel)]="activityLevelSelected" />
+            <label [for]="activity.key" class="ml-2">{{ activity.value }}</label>
+        </div>
+
+       
+        }
+    </form>
+
+ 
+
+    <div class="mt-8 flex justify-between gap-2">
+      <button class="next-btn w-full" (click)="nextStep()" [disabled]="!activityLevelSelected">Register</button>
+    </div>
+  </div>
+</section>

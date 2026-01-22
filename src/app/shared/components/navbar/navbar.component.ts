@@ -1,30 +1,37 @@
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import { CommonModule, NgOptimizedImage} from '@angular/common';
 import { Component, HostListener, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { ThemeService } from '../../services/theme.service';
 import { TranslatePipe } from '@ngx-translate/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-
+import { Router, RouterModule } from '@angular/router';
+import { MenuModule } from 'primeng/menu';
+import { MenuItem } from 'primeng/api';
+import { AuthAPIService } from 'authAPI';
+import { AuthService } from '../../../core/auth/services/auth.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, TranslatePipe, RouterLink, RouterLinkActive, NgOptimizedImage],
+  imports: [ CommonModule,TranslatePipe, RouterModule, NgOptimizedImage,MenuModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements AfterViewInit {
   iconTheme: string = 'light';
+  items: MenuItem[] | undefined;
+
   lang: string = 'en';
   isOpen: boolean = false;
-
+  isAuthenticated :boolean = false;
   @ViewChild('navbar') navbarRef!: ElementRef<HTMLElement>;
 
-  constructor(private _languageService: LanguageService, private _themeService: ThemeService) {}
+  constructor(private _languageService: LanguageService, private _themeService: ThemeService ,private _auth: AuthService, private _authService: AuthAPIService, private router: Router) {}
 
   ngOnInit(): void {
     this.lang = this._languageService.language();
     
+    this.isAuthenticated = this._auth.isAuthenticated();
     this.iconTheme = this._themeService.theme();
+   
   }
 
   ngAfterViewInit(): void {
@@ -65,4 +72,5 @@ export class NavbarComponent implements AfterViewInit {
       nav.classList.add('bg-transparent', 'dark:bg-transparent');
     }
   }
+  
 }

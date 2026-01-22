@@ -2,46 +2,32 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: '',
-    loadComponent: () =>
-      import('./core/layout/layout.component').then((c) => c.LayoutComponent),
+    path: '', loadComponent: () => import('./core/layout/layout.component').then((c) => c.LayoutComponent),
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      {
-        path: 'home',
-        loadComponent: () =>
-          import('./features/pages/home/home.component').then(
-            (c) => c.HomeComponent
-          ),
-      },
-      {
-        path: 'about',
-        loadComponent: () =>
-          import('./features/pages/about/about.component').then(
-            (c) => c.AboutComponent
-          ),
-      },
+      { path: 'home', loadComponent: () => import('./features/pages/home/home.component').then((c) => c.HomeComponent) },
+      { path: 'about', loadComponent: () => import('./features/pages/about/about.component').then((c) => c.AboutComponent) },
       {
         path: 'classes',
         loadComponent: () =>
           import('./features/pages/classes/classes.component').then(
-            (c) => c.ClassesComponent
+            (c) => c.ClassesComponent,
           ),
         title: 'Classes Page',
       },
       {
         path: 'musclesDetails/:id',
         loadComponent: () =>
-          import(
-            './features/pages/classes/components/muscles-details/muscles-details.component'
-          ).then((c) => c.MusclesDetailsComponent),
+          import('./features/pages/classes/components/muscles-details/muscles-details.component').then(
+            (c) => c.MusclesDetailsComponent,
+          ),
         title: 'Details',
       },
       {
         path: 'healthy',
         loadComponent: () =>
           import('./features/pages/healthy/healthy.component').then(
-            (c) => c.HealthyComponent
+            (c) => c.HealthyComponent,
           ),
         title: 'Healthy Page',
       },
@@ -49,25 +35,56 @@ export const routes: Routes = [
         path: 'account',
         loadComponent: () =>
           import('./features/pages/acc/acc.component').then(
-            (c) => c.ACCComponent
+            (c) => c.ACCComponent,
           ),
         title: 'Account Page',
       },
       {
         path: 'mealsDetails/:id',
         loadComponent: () =>
-          import(
-            './features/pages/healthy/components/meals-details/meals-details.component'
-          ).then((c) => c.MealsDetailsComponent),
+          import('./features/pages/healthy/components/meals-details/meals-details.component').then(
+            (c) => c.MealsDetailsComponent,
+          ),
         title: 'Meals Details',
       },
+      
+    ],
+  },
+  {
+    path: 'auth',
+    loadComponent: () =>
+      import('./core/auth/auth.component').then((c) => c.AuthComponent),
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
       {
-        path: '**',
+        path: 'login',
         loadComponent: () =>
-          import('./shared/components/not-found/not-found.component').then(
-            (c) => c.NotFoundComponent
+          import('./core/auth/components/login/login.component').then(
+            (c) => c.LoginComponent,
+          ),
+      },
+      {
+        path: 'register',
+        loadComponent: () =>
+          import('./core/auth/components/register/register.component').then(
+            (c) => c.RegisterComponent,
+          ),
+      },
+      
+      {
+        path: 'forget-password',
+        loadComponent: () =>
+          import('./core/auth/components/forget-password/forget-password.component').then(
+            (c) => c.ForgetPasswordComponent,
           ),
       },
     ],
   },
+  {
+        path: '**',
+        loadComponent: () =>
+          import('./shared/components/not-found/not-found.component').then(
+            (c) => c.NotFoundComponent,
+          ),
+      },
 ];

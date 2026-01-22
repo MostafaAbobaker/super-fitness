@@ -1,0 +1,45 @@
+    <p-stepper [value]="1" >
+        
+        <p-step-panels>
+            <p-step-panel [value]="1">
+                <ng-template #content let-activateCallback="activateCallback">
+                  <app-signup (onRegister)="activateCallback(2)"></app-signup>
+
+                </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="2">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <app-gender (onGenderSelect)="activateCallback(3)"></app-gender>
+                </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="3">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <app-Old (onOldSelect)="activateCallback(4)"></app-Old>
+                </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="4">
+                <ng-template #content let-activateCallback="activateCallback">
+                     <app-weight (onWeightSelect)="activateCallback(5)"></app-weight>
+                </ng-template>
+            </p-step-panel>
+            <p-step-panel [value]="5">
+                <ng-template #content let-activateCallback="activateCallback">
+                     <app-height (onHeightSelect)="activateCallback(6)"></app-height>
+                </ng-template>
+            </p-step-panel>
+            <p-step-panel [value]="6">
+                <ng-template #content let-activateCallback="activateCallback">
+                  <app-Goal (onGoalSelect)="activateCallback(7)"></app-Goal>
+                </ng-template>
+            </p-step-panel>
+            <p-step-panel [value]="7">
+                <ng-template #content let-activateCallback="activateCallback">
+                  <app-activityLevel ></app-activityLevel>
+                  <!-- <app-Goal (onGoalSelect)="activateCallback(7)"></app-Goal> -->
+                </ng-template>
+            </p-step-panel>
+        </p-step-panels>
+    </p-stepper>

@@ -1,21 +1,11 @@
-<main
-  class="relative overflow-hidden bg-[url('/assets/images/Home/home.jpg')] bg-no-repeat bg-cover bg-left-bottom"
->
-  <div class="absolute inset-0 backdrop-blur-3xl pointer-events-none"></div>
-  <div
-    class="relative min-h-screen bg-[#b7bdba]/40 dark:bg-[#1f2524]/40 flex items-end justify-center px-4 z-10"
-  >
+<main class="relative overflow-hidden bg-[url('/assets/images/Home/home.jpg')] bg-no-repeat bg-cover bg-left-bottom">
+  <div class="absolute inset-0 pointer-events-none backdrop-blur-3xl"></div>
+  <div class="relative min-h-screen bg-[#b7bdba]/40 dark:bg-[#1f2524]/40 flex items-end justify-center px-4 z-10">
     <div class="container mx-auto">
-      <div class="grid grid-cols-12">
-        <div class="lg:col-span-6 col-span-12 text-left rtl:text-right pt-25">
-          <h1
-            class="text-black dark:text-white lg:text-5xl text-4xl font-bold leading-tight tracking-widest uppercase"
-          >
-            {{ "hero.title1" | translate }}
-            <span class="text-[var(--primary-color)]">
-              {{ "hero.highlight" | translate }} {{ "hero.title2" | translate }}
-            </span>
-            {{ "hero.title3" | translate }}
+      <div class="grid grid-cols-12 ">
+        <div class="col-span-12 text-left lg:col-span-6 rtl:text-right pt-25">
+          <h1 class="text-4xl font-bold leading-tight tracking-widest text-black uppercase dark:text-white lg:text-5xl">
+            {{"hero.title1" | translate}} <span class="text-[var(--primary-color)]"> {{"hero.highlight" | translate}} {{"hero.title2" | translate}} </span> {{"hero.title3" | translate}}
           </h1>
 
           <div
@@ -66,7 +56,7 @@
           </div>
         </div>
 
-        <div class="lg:col-span-6 col-span-12 flex justify-end">
+        <div class="flex justify-end col-span-12 lg:col-span-6">
           <img
             ngSrc="../../../../../../assets/images/man.png"
             width="456"

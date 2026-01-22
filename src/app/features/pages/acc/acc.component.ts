@@ -4,6 +4,8 @@ import { ThemeService } from '../../../shared/services/theme.service';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { AccountService } from './services/account.service';
+import { AuthAPIService } from 'authAPI';
+import { AuthService } from '../../../core/auth/services/auth.service';
 
 @Component({
   selector: 'app-acc',
@@ -14,9 +16,9 @@ import { AccountService } from './services/account.service';
 export class ACCComponent implements OnInit {
   iconTheme: string = 'light';
   lang: string = 'en';
-
   constructor(
-    private accountService: AccountService,
+    private accountService: AuthAPIService,
+    private _authService: AuthService,
     private _languageService: LanguageService,
     private _themeService: ThemeService,
     private _route: Router
@@ -39,10 +41,11 @@ export class ACCComponent implements OnInit {
 
   logout() {
     this.accountService.logout().subscribe({
-      next: (res) => {
-        
-        localStorage.clear();
-        this._route.navigate(['/login']);
+      next: () => {
+        debugger
+        this._authService.isAuthenticated.set(false);
+        localStorage.removeItem('fitness_token');
+        this._route.navigate(['./auth']);
       },
     });
   }

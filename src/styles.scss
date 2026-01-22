@@ -1,49 +1,157 @@
 /* You can add global styles to this file, and also import other style files */
-@use "tailwindcss";
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400..800&display=swap');
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-@import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400..800&display=swap");
 
-:root {
+@theme {
   --primary-color: #ff4100;
+  --primary-color-rgb: 255, 65, 0;
   --secondary-color: #242424;
 }
 
-body {
-  font-family: "Baloo Thambi 2", system-ui;
-  background-color: #fff;
+:root {
+  --primary-color: #ff4100;
+  --primary-color-rgb: 255, 65, 0;
+  --secondary-color: #242424;
 }
-[data-theme="dark"] {
+
+
+
   body {
-    background-color: var(--secondary-color);
-    color: #fff;
+    font-family: "Baloo Thambi 2", system-ui;
+    background-color: #fff;
   }
+
+  [data-theme="dark"] {
+    body {
+      background-color: var(--secondary-color);
+      color: #fff;
+    }
+  }
+
+  // Meals Style
+  .nutrition-badge {
+    @apply w-20 h-20 rounded-full border border-orange-500 flex flex-col items-center justify-center text-center bg-black/40;
+  }
+
+
+  .owl-carousel .owl-stage .owl-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* body .logo-side .owl-carousel .owl-stage > .active:nth-child(1) {
+  background-color: #ff4100;
 }
 
-// Meals Style
-.nutrition-badge {
-  @apply w-20 h-20 rounded-full border border-orange-500 
-           flex flex-col items-center justify-center
-           text-center bg-black/40;
-}
+.owl-carousel .owl-stage .owl-item.active:nth-child(2) .age-item{
+  font-size: 16px;
+} */
+  .owl-carousel .owl-stage .owl-item {
+    font-size: 34px;
+    font-weight: 800;
+    transition: all 0.3s ease-in-out;
+    height: 60px;
+    padding: 20px;
+    cursor: pointer;
+  }
 
-.badge-value {
-  @apply text-lg font-bold;
-}
+  .owl-carousel .owl-stage .owl-item .age-item {
+    font-size: 34px;
+    font-weight: 800;
+    transition: all 0.3s ease-in-out;
+  }
 
-.badge-label {
-  @apply text-xs text-orange-400;
-}
+  .owl-carousel .owl-stage .owl-item.active .age-item.active {
+    font-size: 48px;
+    color: var(--primary-color);
+    font-weight: 800;
+    // transform: translateY(-10px);
 
-// p-carousel
-.p-carousel-indicator-active .p-carousel-indicator-button {
-  background-color: var(--primary-color) !important;
-}
-// acc
-.card {
-  @apply border-1 border-gray-700 backdrop-blur-md rounded-2xl h-36 flex items-center justify-center text-center font-medium shadow-sm hover:shadow-md transition cursor-pointer;
-}
-// bg-imge
-.classes-home{
+  }
+
+
+
+
+  /* checkbox Prime ng */
+  .field-checkbox {
+    position: relative;
+
+    .p-radiobutton {
+      position: absolute;
+      inset-inline-end: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+
+    }
+
+    label {
+      display: block;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      border-radius: 20px;
+      border: 1px solid #D9D9D9;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .p-radiobutton-checked label {
+      border-color: var(--primary-color);
+    }
+
+    .p-radiobutton-checked .p-radiobutton-box {
+      border-color: var(--primary-color);
+      background: var(--primary-color);
+    }
+
+    .p-radiobutton-checked:not(.p-disabled):has(.p-radiobutton-input:hover) .p-radiobutton-box {
+      border-color: var(--primary-color);
+      background: var(--primary-color);
+    }
+
+  }
+
+  .field-checkbox {
+    &:has(input.p-radiobutton-input:checked) {
+      label {
+        border-color: var(--primary-color);
+      }
+    }
+  }
+
+  /* Navbar */
+  .navbar-action .nav-item .p-menu-overlay {
+    top: 100% !important;
+    left: 0 !important;
+  }
+
+  .badge-value {
+    @apply text-lg font-bold;
+  }
+
+  .badge-label {
+    @apply text-xs text-orange-400;
+  }
+
+  // p-carousel
+  .p-carousel-indicator-active .p-carousel-indicator-button {
+    background-color: var(--primary-color) !important;
+  }
+
+  // acc
+  .card {
+    @apply border-1 border-gray-700 backdrop-blur-md rounded-2xl h-36 flex items-center justify-center text-center font-medium shadow-sm hover:shadow-md transition cursor-pointer;
+  }
+
+  // bg-imge
+  .classes-home {
     background-image: url('./assets/images/classes/classes-home.jpg');
     background-size: cover;
-}
+  }
