@@ -5,9 +5,9 @@ import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ErrorMessageComponent } from '../../../../shared/components/error-message/error-message.component';
 import { ButtonSubmitComponent } from '../../../../shared/components/button-submit/button-submit.component';
-import { AuthAPIService } from 'authAPI';
 import { SigninPayload } from '../../interfaces/signin-payload';
 import { AuthService } from '../../services/auth.service';
+import {AuthAPIService} from '../../../../../../projects/auth-api/src/lib/auth-api.service';
 
 @Component({
   selector: 'app-login',

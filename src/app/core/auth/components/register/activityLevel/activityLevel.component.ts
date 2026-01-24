@@ -3,9 +3,9 @@ import {  FormsModule  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RegisterService } from '../../../services/register.service';
-import { AuthAPIService } from 'authAPI';
 import { SignupPayload } from '../../../interfaces/signup-payload';
 import { QuestionsLayoutComponent } from "../../../../../shared/components/questions-layout/questions-layout.component";
+import {AuthAPIService} from '../../../../../../../projects/auth-api/src/lib/auth-api.service';
 
 @Component({
   selector: 'app-activityLevel',
@@ -26,7 +26,7 @@ constructor(private router: Router, private _registerService: RegisterService , 
     {
       key:'key1',
       value:'Rookie'
-    },  
+    },
     {
       key:'level2',
       value:'Beginner'
@@ -44,12 +44,12 @@ constructor(private router: Router, private _registerService: RegisterService , 
       value:'True Beast'
     },
   ]
-    
+
 
 
   nextStep() {
-    
-    
+
+
     this._registerService.activityLevel.set(this.activityLevelSelected || '');
     let signupData = {
       firstName: this._registerService.firstName(),
@@ -65,21 +65,21 @@ constructor(private router: Router, private _registerService: RegisterService , 
       activityLevel: this._registerService.activityLevel(),
     }
     console.log(signupData);
-    
+
     this._authService.signupApi(signupData as SignupPayload).subscribe({
       next: (res) => {
-       
+
         console.log(res);
-        
+
         this.router.navigate(['/auth/login']);
       },
       error: (err) => {
         console.log(err);
       }
     })
-   
+
     // this.router.navigate(['/auth/register/question-six']);
   }
- 
+
 
 }

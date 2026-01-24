@@ -22,7 +22,9 @@ export class GeminiService {
    */
   SendChatToGeminiApi(message: string): Observable <string> {
     return this.httpClient.post<GeminiResponse>(`${environment.geminiApikey}/ask`, { message }).pipe(
-      map((response: GeminiResponse): string => {
+      map((rawResponse: GeminiResponse): string => {
+        const response = typeof rawResponse === 'string' ? JSON.parse(rawResponse) : rawResponse;
+
         this.text = response?.candidates?.[0]?.content?.parts?.[0]?.text;
 
         if (!this.text) {

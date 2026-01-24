@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
@@ -8,12 +7,14 @@ import { OtpComponent } from "../otp/otp.component";
 import { Subscription } from 'rxjs';
 import { ErrorMessageComponent } from '../../../../shared/components/error-message/error-message.component';
 import { ButtonSubmitComponent } from '../../../../shared/components/button-submit/button-submit.component';
-import { AuthAPIService } from 'authAPI';
+
 import { ForgotPasswordData } from '../../interfaces/ForgotPasswordData';
+import {AuthAPIService} from '../../../../../../projects/auth-api/src/lib/auth-api.service';
+import {AuthService} from '../../services/auth.service';
 @Component({
   selector: 'app-forget-password',
   imports: [ReactiveFormsModule, ToastModule, OtpComponent, ErrorMessageComponent, ButtonSubmitComponent],
-  templateUrl: './forget-password.component.html',  
+  templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.scss',
   providers: [MessageService]
 

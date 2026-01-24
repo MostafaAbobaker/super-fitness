@@ -6,10 +6,10 @@ import { InputOtpModule } from 'primeng/inputotp';
 import { NewPasswordComponent } from '../new-password/new-password.component';
 import { Subscription } from 'rxjs';
 import { ButtonSubmitComponent } from '../../../../shared/components/button-submit/button-submit.component';
-import { AuthAPIService } from 'authAPI';
 import { VerifyResetData } from '../../interfaces/VerifyResetData';
 import { AuthService } from '../../services/auth.service';
 import { ForgotPasswordData } from '../../interfaces/ForgotPasswordData';
+import {AuthAPIService} from '../../../../../../projects/auth-api/src/lib/auth-api.service';
 
 @Component({
   selector: 'app-otp',
@@ -51,7 +51,7 @@ export class OtpComponent {
   resendCode() {
     let email:string;
     email = this.authService.email();
-     
+
     this.subscriptionEmail= this.authApiService.forgotPassword({email}).subscribe({
       next: (res) => {
         console.log(res);

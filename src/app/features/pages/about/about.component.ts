@@ -8,7 +8,6 @@ import {BackgroundType} from '../../../shared/components/button/Helper/Backgroun
 @Component({
   selector: 'app-about',
   imports: [
-    NewsBarComponent,
     ButtonComponent,
     TranslatePipe,
     NgOptimizedImage

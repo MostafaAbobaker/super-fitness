@@ -11,6 +11,7 @@
     "healthy": "Healthy"
   },
   "about": {
+    "header" : "About Us",
     "title": "EMPOWERING YOU TO ACHIEVE",
     "speTerm": "YOUR FITNESS",
     "term": "GOALS",
@@ -31,6 +32,7 @@
     "btn": ""
   },
   "bestWay": {
+    "header" : "Why Us",
     "title": "Elevate fitness with the",
     "highlight": "best way",
     "titleEnd": "possible",
@@ -59,7 +61,12 @@
     "stat2Text": "Certified Trainers",
 
     "stat3Number": "20+",
-    "stat3Text": "Year Of Experience"
+    "stat3Text": "Year Of Experience",
+
+    "btn":{
+      "getStarted": "Get Started",
+      "explore" : "Explore More"
+    }
   },
   "classes": {
     "fitness": "fitness class",

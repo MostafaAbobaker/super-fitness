@@ -2,10 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Output, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CarouselComponent, CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RegisterService } from '../../../services/register.service';
 import { QuestionsLayoutComponent } from '../../../../../shared/components/questions-layout/questions-layout.component';
-
+import { CarouselComponent, CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-weight',
   imports: [CommonModule, ReactiveFormsModule,CarouselModule, QuestionsLayoutComponent],
@@ -48,7 +47,7 @@ export class WeightComponent {
     return res;
   }
 
- 
+
 
   buildNumbers() {
     this.arrayNumber = [];
@@ -77,7 +76,7 @@ export class WeightComponent {
       nav: false
     };
   }
- 
+
   onWheel(event: WheelEvent) {
     event.preventDefault();
     if (!this.owl) return;
@@ -94,5 +93,5 @@ nextStep() {
     // this.router.navigate(['/auth/register/question-four']);
     this.onWeightSelect.emit();
   }
-  
+
 }

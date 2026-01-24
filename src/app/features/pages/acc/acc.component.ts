@@ -4,8 +4,8 @@ import { ThemeService } from '../../../shared/services/theme.service';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { AccountService } from './services/account.service';
-import { AuthAPIService } from 'authAPI';
 import { AuthService } from '../../../core/auth/services/auth.service';
+import {AuthAPIService} from '../../../../../projects/auth-api/src/lib/auth-api.service';
 
 @Component({
   selector: 'app-acc',

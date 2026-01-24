@@ -6,12 +6,13 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { Router, RouterModule } from '@angular/router';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
-import { AuthAPIService } from 'authAPI';
 import { AuthService } from '../../../core/auth/services/auth.service';
+import {AuthAPIService} from '../../../../../projects/auth-api/src/lib/auth-api.service';
+import {NewsBarComponent} from '../news-bar/news-bar.component';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [ CommonModule,TranslatePipe, RouterModule, NgOptimizedImage,MenuModule],
+  imports: [CommonModule, TranslatePipe, RouterModule, NgOptimizedImage, MenuModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
@@ -28,10 +29,10 @@ export class NavbarComponent implements AfterViewInit {
 
   ngOnInit(): void {
     this.lang = this._languageService.language();
-    
+
     this.isAuthenticated = this._auth.isAuthenticated();
     this.iconTheme = this._themeService.theme();
-   
+
   }
 
   ngAfterViewInit(): void {
@@ -72,5 +73,5 @@ export class NavbarComponent implements AfterViewInit {
       nav.classList.add('bg-transparent', 'dark:bg-transparent');
     }
   }
-  
+
 }

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ErrorMessageComponent } from '../../../../shared/components/error-message/error-message.component';
 import { ButtonSubmitComponent } from '../../../../shared/components/button-submit/button-submit.component';
-import { AuthAPIService } from 'authAPI';
+import {AuthAPIService} from '../../../../../../projects/auth-api/src/lib/auth-api.service';
 
 @Component({
   selector: 'app-new-password',
@@ -24,7 +24,7 @@ export class NewPasswordComponent {
   private messageService = inject(MessageService);
   private router = inject(Router);
   subscription:  Subscription | undefined;
-  
+
 
 
 
@@ -42,7 +42,7 @@ passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
     return password && confirmPassword && password === confirmPassword ? null : { passwordMismatch: true };
   }
 
- 
+
 submit() {
     if (this.form.valid) {
       const { email, newPassword } = this.form.value;
@@ -59,7 +59,7 @@ submit() {
   }
 
 
- 
+
   get newPassword() { return this.form.get('newPassword'); }
   get confirmPassword() { return this.form.get('confirmPassword'); }
   onDestroy() {

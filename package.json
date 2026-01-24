@@ -23,7 +23,8 @@
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
     "@primeng/themes": "^20.3.0",
-    "@tailwindcss/postcss": "^4.1.17",
+    "@tailwindcss/cli": "^4.1.18",
+    "@tailwindcss/postcss": "^4.1.18",
     "@tailwindcss/vite": "^4.1.17",
     "ngx-owl-carousel-o": "^19.0.2",
     "primeng": "^19.1.4",
@@ -46,7 +47,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^19.2.0",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.17",
+    "tailwindcss": "^4.1.18",
     "typescript": "~5.7.2"
   }
 }

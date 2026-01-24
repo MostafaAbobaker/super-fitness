@@ -48,7 +48,7 @@ export class OldComponent {
     return res;
   }
 
-  
+
 
   buildNumbers() {
     this.arrayNumber = [];
@@ -88,7 +88,7 @@ export class OldComponent {
     }
   }
   next() {
-    
+
     if (this.form.invalid) return;
     console.log(this.form.value);
 
@@ -97,5 +97,5 @@ export class OldComponent {
     console.log(this._registerService.age());
     // this.router.navigate(['/auth/register/question-three']);
   }
- 
+
 }
