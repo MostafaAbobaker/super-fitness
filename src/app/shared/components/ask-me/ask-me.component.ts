@@ -45,7 +45,7 @@ export class AskMeComponent implements OnInit, AfterViewChecked {
 
   // This hook runs after every change detection cycle
   ngAfterViewChecked(): void {
-    this.scrollToBottom();
+    // this.scrollToBottom();
   }
 
   scrollToBottom(): void {
@@ -128,5 +128,8 @@ export class AskMeComponent implements OnInit, AfterViewChecked {
 
       this.isLoading = false;
     }
+    setTimeout(() => {
+      this.scrollToBottom();
+    });
   }
 }
