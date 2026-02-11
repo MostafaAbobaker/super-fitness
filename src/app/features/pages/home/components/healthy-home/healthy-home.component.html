@@ -1,21 +1,15 @@
-<section class="classes-home py-10 relative">
-  <div class="max-w-7xl">
-    <app-healthy-header></app-healthy-header>
-    <div class="absolute top-18 left-0 w-full h-1/2 bg-[#F3F3F4]">
-      <!-- Meals -->
-      <ul class="flex flex-wrap justify-center gap-4 my-5">
-        @for (category of categoriesList; track category.idCategory) {
-        <li>
-          <app-button-category
-            [musclesList]="category"
-            (click)="mealsByCategory(category.strCategory)"
-          ></app-button-category>
-        </li>
-        }
-      </ul>
-    </div>
-  </div>
-  <div class="mt-10">
-    <app-category [mealsGroup]="mealsCategory"></app-category>
-  </div>
+<section class="classes-home py-16 px-4 relative">
+  <app-healthy-header></app-healthy-header>
+  <ul class="flex flex-wrap justify-center gap-3 mt-8 text-sm md:text-base">
+    @for (category of categoriesList; track category.idCategory) {
+      <li>
+        <app-button-category
+          [musclesList]="category"
+          (click)="mealsByCategory(category.strCategory)"
+        ></app-button-category>
+      </li>
+    }
+  </ul>
+
+  <app-category [mealsGroup]="mealsCategory"></app-category>
 </section>

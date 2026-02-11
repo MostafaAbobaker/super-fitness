@@ -7,43 +7,45 @@
   styleClass="custom-carousel"
 >
   <ng-template pTemplate="item" let-slide>
-    <div class="grid grid-cols-3 gap-6">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-7xl mx-auto"
+    >
       @for (item of slide; track $index) {
-      <a
-        [routerLink]="['/musclesDetails', item._id]"
-        class="rounded-2xl shadow-lg cursor-pointer"
-      >
-        <div class="relative">
-          @if(item.image){
-          <img
-            [src]="item.image"
-            [alt]="item.name"
-            class="w-full h-[300px] object-fit rounded-t-2xl"
-          />
-          }@else{
-          <img
-            src="../../../../../../assets/images/man.png"
-            alt="man"
-            class="w-full h-[300px] object-fit rounded-2xl"
-          />
-          }
-          <div class="w-full absolute bottom-0 left-0 p-2 bg-[#24242499]">
-            <div class="mb-4 font-medium">{{ item.name }}</div>
-            <a
-              [routerLink]="['/musclesDetails', item._id]"
-              class="text-(--primary-color)"
-            >
-              {{'classes.explore' | translate }} 
-              @if(lang == 'en'){
-                <i class="fa-solid fa-circle-arrow-right"></i>
-              }@else {
-                <i class="fa-solid fa-circle-arrow-left"></i>
-              }
-            </a>
+        <a
+          [routerLink]="['/musclesDetails', item._id]"
+          class="bg-white rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition"
+        >
+          <div class="relative">
+            @if (item.image) {
+              <img
+                [src]="item.image"
+                [alt]="item.name"
+                class="w-full h-[300px] object-fit rounded-t-2xl"
+              />
+            } @else {
+              <img
+                src="../../../../../../assets/images/man.png"
+                alt="man"
+                class="w-full h-[300px] object-fit rounded-2xl"
+              />
+            }
+            <div class="w-full absolute bottom-0 left-0 p-2 bg-[#24242499]">
+              <div class="mb-4 font-medium">{{ item.name }}</div>
+              <a
+                [routerLink]="['/musclesDetails', item._id]"
+                class="text-(--primary-color)"
+              >
+                {{ "classes.explore" | translate }}
+                @if (lang == "en") {
+                  <i class="fa-solid fa-circle-arrow-right"></i>
+                } @else {
+                  <i class="fa-solid fa-circle-arrow-left"></i>
+                }
+              </a>
+            </div>
           </div>
-        </div>
-      </a>
-      }
+        </a>
+      } 
     </div>
   </ng-template>
 </p-carousel>

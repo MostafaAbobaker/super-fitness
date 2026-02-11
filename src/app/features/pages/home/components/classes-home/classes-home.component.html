@@ -1,22 +1,18 @@
-<section class="classes-home py-10 relative">
+<section class="classes-home py-16 px-4 relative">
   <app-classes-header></app-classes-header>
-  <div class="absolute top-18 left-0 w-full h-1/2 bg-[#F3F3F4]">
-    <!-- classes -->
-    <ul class="flex flex-wrap justify-center gap-4 my-5">
-      <li>
-        <app-full-body-btn (click)="getMusclesRandom()"></app-full-body-btn>
-      </li>
-      @for (muscles of musclesList; track muscles._id) {
+  <ul class="flex flex-wrap justify-center gap-3 mt-8 text-sm md:text-base">
+    <li>
+      <app-full-body-btn (click)="getMusclesRandom()"></app-full-body-btn>
+    </li>
+    @for (muscles of musclesList; track muscles._id) {
       <li>
         <app-button-category
           [musclesList]="muscles"
           (click)="getMusclesData(muscles._id)"
         ></app-button-category>
       </li>
-      }
-    </ul>
-  </div>
-  <div class="mt-10">
-    <app-muscles [musclesGroup]="musclesBox"></app-muscles>
-  </div>
+    }
+  </ul>
+
+  <app-muscles [musclesGroup]="musclesBox"></app-muscles>
 </section>
