@@ -3,11 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CarouselModule } from 'primeng/carousel';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { chunkArray } from '../../../../../shared/services/chunk.util';
-import {
-  AllMuscles,
-  Difficultylevel,
-  Exercise,
-} from '../../interfaces/classes';
+import { Difficultylevel, Exercise } from '../../interfaces/classes';
 import { MusclesService } from './services/muscles.service';
 import { HealthyList } from '../../../healthy/interfaces/healthy';
 import { HealthyService } from '../../../healthy/services/healthy.service';
@@ -31,6 +27,7 @@ export class MusclesDetailsComponent {
   musclesList: Difficultylevel[] = [];
   exercisesList: Exercise[] = [];
   selectExercise!: Exercise;
+  difficultId: string = '';
   musclesId: string = '';
   difficult: string = '';
   mealsList: HealthyList[][] = [];
@@ -77,20 +74,27 @@ export class MusclesDetailsComponent {
     this.musclesService.getMusclesById(id).subscribe({
       next: (res) => {
         this.musclesList = res.difficulty_levels;
+        this.difficultId = this.musclesList[0].id;
+        console.log(this.difficultId);
       },
     });
   }
+  // extractYoutubeId
+  extractYoutubeId(url: string): string | null {
+    // youtu.be/VIDEO_ID
+    if (url.includes('youtu.be')) {
+      return url.split('youtu.be/')[1]?.split('?')[0];
+    }
 
-  // exercises difficult
-  getExercisesDifficult(musclesId: string, difficultId: string): void {
-    this.musclesService.getExercises(musclesId, difficultId).subscribe({
-      next: (res) => {
-        this.exercisesList = res.exercises;
-        this.selectExercise = this.exercisesList[0];
-      },
-    });
+    // youtube.com/watch?v=VIDEO_ID
+    if (url.includes('watch?v=')) {
+      return url.split('watch?v=')[1]?.split('&')[0];
+    }
+
+    return null;
   }
-  selectedExercise(exercise: any): void {
+  // setVideo
+  setVideo(exercise: any): void {
     this.selectExercise = exercise;
     const url = exercise.short_youtube_demonstration_link;
 
@@ -107,19 +111,24 @@ export class MusclesDetailsComponent {
         this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
     }
   }
-  // extractYoutubeId
-  extractYoutubeId(url: string): string | null {
-    // youtu.be/VIDEO_ID
-    if (url.includes('youtu.be')) {
-      return url.split('youtu.be/')[1]?.split('?')[0];
-    }
 
-    // youtube.com/watch?v=VIDEO_ID
-    if (url.includes('watch?v=')) {
-      return url.split('watch?v=')[1]?.split('&')[0];
-    }
+  // exercises difficult
+  getExercisesDifficult(musclesId: string, difficultId: string): void {
+    this.musclesService.getExercises(musclesId, difficultId).subscribe({
+      next: (res) => {
+        this.exercisesList = res.exercises;
 
-    return null;
+        if (this.exercisesList.length) {
+          this.selectExercise = this.exercisesList[0];
+          this.setVideo(this.selectExercise);
+        }
+      },
+    });
+  }
+
+  selectedExercise(exercise: Exercise): void {
+    this.selectExercise = exercise;
+    this.setVideo(exercise);
   }
 
   // mealsByCategory

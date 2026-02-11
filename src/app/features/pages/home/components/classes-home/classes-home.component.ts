@@ -6,6 +6,7 @@ import { chunkArray } from '../../../../../shared/services/chunk.util';
 import { AllMuscles, Muscles } from '../../../classes/interfaces/classes';
 import { ClassesService } from '../../../classes/services/classes.service';
 import { FullBodyBtnComponent } from "../../../../../shared/components/full-body-btn/full-body-btn.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-classes-home',
